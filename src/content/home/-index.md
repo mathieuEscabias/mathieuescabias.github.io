@@ -1,9 +1,9 @@
 ---
-image: "@assets/astrogon-star.svg"
+image: "@assets/logo-fonce.png"
 imageAlt: Astrogon logo
-title: Astrogon
-content: Bienvenue mon pote
+title: Bienvenue
+content: Création de sites web accessibles, humains et adaptés à votre budget
 button:
-  label: See the Code
-  link: https://github.com/astrogon/astrogon
+  label: Mes projets
+  link: http://localhost:4321/docs
 ---

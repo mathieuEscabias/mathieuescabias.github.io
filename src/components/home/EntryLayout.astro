@@ -11,6 +11,7 @@ interface Props {
 
 const { entry } = Astro.props;
 const { image, imageAlt, title, content, button } = entry.data;
+
 ---
 
 <BaseLayout>
@@ -49,6 +50,23 @@ const { image, imageAlt, title, content, button } = entry.data;
           }
         </div>
       </div>
+
+    </div>
+      <div class="section-sm">
+    <div class="container">
+      <div class="row justify-center">
+        <div class="glass rounded-lg text-center p-8 md:col-10 lg:col-12 intersect:animate-fadeUp opacity-0 intersect-no-queue">
+
+          <img src="src/assets/home/moi.jpg" class=" w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 sm:w-72 sm:rounded-2xl dark:bg-zinc-800 rotate-2" alt="me" />
+          <h2 class="mb-5 p-5">salut c'est mathieu !</h2>
+          <p class="mb-5 ">Je suis développeur web freelance, passionné par l'accessibilité et l'expérience utilisateur. J'aide les entreprises à créer des sites web accessibles, humains et adaptés à leur budget.</p>
+
+          <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+          <div class="bg-blue-600 h-2.5 rounded-full" style="width: 45%"></div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
+  
 </BaseLayout>
