@@ -55,6 +55,10 @@ img {
   @apply mx-auto;
 }
 
+a {
+  @apply italic;
+}
+
 a:hover,
 .a:hover {
   @apply opacity-60;
@@ -90,3 +94,6 @@ html.dark .astro-code span {
 // code {
 //   @apply after:border-none;
 // }
+
+
+

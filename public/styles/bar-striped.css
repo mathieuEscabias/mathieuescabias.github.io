@@ -1,0 +1,31 @@
+/* pour les barres de progression rayées */
+.bar-striped {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.192) 0,
+      rgba(255, 255, 255, 0.19) 8px,
+      transparent 8px,
+      transparent 16px
+    );
+    background-size: 25px 25px;
+    animation: stripesMove 1.5s linear infinite;
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
+@keyframes stripesMove {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 25px 0;
+  }
+}

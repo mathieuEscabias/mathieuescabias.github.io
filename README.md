@@ -26,7 +26,6 @@ Astrogon is a rapidly-customizable multipurpose website template built using Ast
 - Index Cards - A variation on the "Poetry" layout, where all content is kept in a single file, and displayed in a single page
 - And more:
   - Homepage
-  - About/Bio
   - Portfolio
   - Terms and Conditions
   - 404 page
