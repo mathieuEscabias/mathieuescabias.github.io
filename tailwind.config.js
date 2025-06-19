@@ -44,6 +44,7 @@ module.exports = {
     extend: {
       colors: {
         txt: {
+          mycolor: "#9E3C9D",
           p: "#000",
           s: "#222",
           light: "#444",
@@ -56,6 +57,7 @@ module.exports = {
         border: "#ddd",
         darkmode: {
           txt: {
+            mycolor: "#9E3C9D",
             p: "#fff",
             s: "#ddd",
             light: "#bbb",
