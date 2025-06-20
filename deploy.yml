@@ -7,8 +7,17 @@ on:
     branches: [ main ]
   # Allows you to run this workflow manually from the Actions tab on GitHub.
   workflow_dispatch:
+name: Déployer sur GitHub Pages
 
-# Allow this job to clone the repo and create a page deployment
+on:
+  # Déclenchez le workflow chaque fois que vous poussez vers la branche `main`
+  # Vous utilisez un nom de branche différent ? Remplacez `main` par le nom de votre branche
+  push:
+    branches: [ main ]
+  # Vous permet d'exécuter ce workflow manuellement à partir de l'onglet Actions sur GitHub.
+  workflow_dispatch:
+
+# Autoriser cette tâche à cloner le dépôt et à créer un déploiement de page
 permissions:
   contents: read
   pages: write
@@ -18,14 +27,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout your repository using git
+      - name: Extraire votre dépôt à l'aide de git
         uses: actions/checkout@v4
-      - name: Install, build, and upload your site
+      - name: Installer, compiler et télécharger votre site
         uses: withastro/action@v3
-        # with:
-          # path: . # The root location of your Astro project inside the repository. (optional)
-          # node-version: 20 # The specific version of Node that should be used to build your site. Defaults to 20. (optional)
-          # package-manager: pnpm@latest # The Node package manager that should be used to install dependencies and build your site. Automatically detected based on your lockfile. (optional)
+        with:
+            # path: . # L'emplacement racine de votre projet Astro dans le dépôt. (facultatif)
+            # node-version: 20 # Version spécifique de Node à utiliser pour compiler votre site. La valeur par défaut est 20. (facultatif)
+            # package-manager: yarn # Le gestionnaire de paquets Node qui doit être utilisé pour installer les dépendances et compiler votre site. Détecté automatiquement en fonction de votre lockfile. (facultatif)
 
   deploy:
     needs: build
@@ -34,6 +43,6 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Deploy to GitHub Pages
+      - name: Déployer sur GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
