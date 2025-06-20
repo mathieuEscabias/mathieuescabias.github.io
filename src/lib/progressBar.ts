@@ -41,4 +41,3 @@ if (document.readyState === "loading") {
 }
 
 document.addEventListener("astro:after-swap", run);
-
