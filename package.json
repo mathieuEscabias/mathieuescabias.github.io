@@ -11,7 +11,7 @@
     "preview": "astro preview",
     "postbuild": "pagefind --site dist",
     "format": "prettier -w ./src",
-    "deploy": "npm run build && gh-pages -d dist"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.2.4",
