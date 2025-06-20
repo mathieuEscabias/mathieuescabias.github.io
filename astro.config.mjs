@@ -12,7 +12,7 @@ import remarkMath from "remark-math";
 // https://astro.build/config
 export default defineConfig({
   output: "static",
-  site: "/",
+  site: "https://mathieuescabias.github.io",
   trailingSlash: "ignore",
   prefetch: {
     prefetchAll: true
