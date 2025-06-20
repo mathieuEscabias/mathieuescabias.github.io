@@ -3,6 +3,8 @@ import BaseLayout from "@components/base/BaseLayout.astro";
 import { markdownify } from "@lib/textConverter";
 import type { HomeEntry } from "@/types";
 import { Image } from "astro:assets";
+import { animateProgressBars } from "@/lib/progressBar";
+
 
 interface Props {
   entry: HomeEntry;
