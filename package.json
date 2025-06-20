@@ -6,12 +6,12 @@
   "license": "MIT",
   "packageManager": "npm@10.8.2",
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
+  "dev": "astro dev",
+  "build": "astro build",
+  "preview": "astro preview",
     "postbuild": "pagefind --site dist",
     "format": "prettier -w ./src",
-    "deploy": "gh-pages -d dist"
+    "deploy": "astro build && gh-pages -d dist"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.2.4",

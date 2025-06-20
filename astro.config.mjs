@@ -13,7 +13,7 @@ import remarkMath from "remark-math";
 export default defineConfig({
   output: "static",
   site: "https://mathieuescabias.github.io",
-    base: "/",
+    base: '/mathieuescabias.github.io/',
   trailingSlash: "ignore",
   prefetch: {
     prefetchAll: true
