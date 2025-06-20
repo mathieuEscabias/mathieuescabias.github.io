@@ -1,6 +1,6 @@
 // for animating progress bars when they come into view
 
-export function animateProgressBars() {
+function animateProgressBars() {
   const bars = document.querySelectorAll<HTMLElement>(".progress-bar");
 
   const observer = new IntersectionObserver(
@@ -10,14 +10,12 @@ export function animateProgressBars() {
         const value = bar.getAttribute("data-value");
 
         if (entry.isIntersecting) {
-          // Si visible, on anime
           if (value) {
             bar.style.transition = "width 1.5s ease";
             bar.style.width = `${value}%`;
           }
         } else {
-          // Si pas visible, on réinitialise
-          bar.style.transition = "none"; 
+          bar.style.transition = "none";
           bar.style.width = "0%";
         }
       });
@@ -32,3 +30,15 @@ export function animateProgressBars() {
     observer.observe(bar);
   });
 }
+
+// auto-execute
+const run = () => animateProgressBars();
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", run);
+} else {
+  run();
+}
+
+document.addEventListener("astro:after-swap", run);
+
