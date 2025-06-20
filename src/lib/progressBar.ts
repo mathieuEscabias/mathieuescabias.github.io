@@ -32,5 +32,3 @@ export function animateProgressBars() {
     observer.observe(bar);
   });
 }
-
-

@@ -43,7 +43,7 @@ h6,
 }
 
 p {
-  @apply intersect:animate-fade opacity-0;
+  @apply intersect:animate-fade opacity-0 text-zinc-900 dark:text-stone-100;
 }
 
 b,

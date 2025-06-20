@@ -1,4 +1,4 @@
 ---
-title: Authors
+title: Contributeur
 description: this is meta description
 ---
