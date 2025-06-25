@@ -2,7 +2,6 @@
 import { getIndex } from "@lib/contentParser";
 import EntryLayout from "@components/home/EntryLayout.astro";
 import type { HomeEntry } from "@/types";
-import { animateProgressBars } from "@/lib/progressBar";
 
 const entry = (await getIndex("home")) as HomeEntry;
 ---
