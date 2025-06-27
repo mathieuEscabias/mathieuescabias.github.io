@@ -6,9 +6,9 @@
   "license": "MIT",
   "packageManager": "npm@10.8.2",
   "scripts": {
-  "dev": "astro dev",
-  "build": "astro build",
-  "preview": "astro preview",
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
     "postbuild": "pagefind --site dist",
     "format": "prettier -w ./src",
     "deploy": "astro build && gh-pages -d dist"
@@ -20,6 +20,7 @@
     "@astrojs/sitemap": "^3.3.0",
     "@astrojs/tailwind": "^6.0.2",
     "@radix-ui/react-scroll-area": "^1.1.0",
+    "animate.css": "^4.1.1",
     "astro": "^5.7.2",
     "astro-auto-import": "^0.4.2",
     "astro-tooltips": "^0.6.2",

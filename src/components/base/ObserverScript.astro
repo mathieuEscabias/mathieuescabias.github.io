@@ -1,5 +1,4 @@
 <!-- Customized from https://github.com/heidkaemper/tailwindcss-intersect -->
-
 <script is:inline>
   const Observer = {
     observer: null,
@@ -18,7 +17,7 @@
       ];
 
       const elements = Array.from(
-        document.querySelectorAll(selectors.join(","))
+        document.querySelectorAll(selectors.join(",")),
       );
 
       const getThreshold = (element) => {
@@ -62,10 +61,17 @@
                 target.removeAttribute("no-intersect");
                 target.setAttribute("data-animated", "true");
 
-                const delay = this.animationCounter * this.delayBetweenAnimations;
+                const delay =
+                  this.animationCounter * this.delayBetweenAnimations;
                 this.animationCounter++;
 
                 target.style.animationDelay = `${delay}ms`;
+
+
+                const animClass = target.dataset.intersectAnimate;
+                if (animClass) {
+                  target.classList.add(animClass);
+                }
 
                 if (!target.classList.contains("intersect-repeat")) {
                   this.observer.unobserve(target);
@@ -76,6 +82,12 @@
               target.removeAttribute("data-animated");
               target.style.transitionDelay = "";
               target.style.animationDelay = "";
+
+
+              const animClass = target.dataset.intersectAnimate;
+              if (animClass) {
+                target.classList.remove(animClass);
+              }
 
               this.animationCounter = 0;
             }
@@ -99,4 +111,3 @@
     Observer.start();
   });
 </script>
-
