@@ -30,8 +30,8 @@ export default defineConfig({
     rehypePlugins: [[rehypeKatex, {}]],
     shikiConfig: {
       themes: { // https://shiki.style/themes
-        light: "light-plus",
         dark: "dark-plus",
+        light: "light-plus",
       } 
     },
     extendDefaultPlugins: true
