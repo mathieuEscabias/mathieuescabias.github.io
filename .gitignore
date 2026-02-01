@@ -81,3 +81,6 @@ pnpm-debug.log*
 # build output
 .output/
 .json/
+
+# local env files
+dist/
