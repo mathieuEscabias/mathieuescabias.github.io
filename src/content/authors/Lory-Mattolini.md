@@ -1,6 +1,6 @@
 ---
 title: Lory Mattolini
-email: janedoe@email.com
+email: mattolini.l@outlook.com
 image: "@assets/profile/lory-mattolini.jpg"
 social:
   linkedIn: "https://www.linkedin.com/in/lory-mattolini-55305527b/"

@@ -32,7 +32,7 @@ const bodyBrief = entry.body ? plainify(entry.body?.slice(0, 200)) : null;
     <h4 class="mb-3">
       <a href={`/authors/${entry.id}`}>{title}</a>
     </h4>
-    {bodyBrief && <p class="mb-4 py-5">{bodyBrief}</p>}
+    {bodyBrief && <p class="py-3 min-h-[180px]">{bodyBrief}</p>}
     <Social links={social} />
   </div>
 </div>

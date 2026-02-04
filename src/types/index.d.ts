@@ -36,6 +36,8 @@ export type EntryReference = {
   collection: string;
 };
 
+
+
 // Define heading hierarchy so that we can generate ToC
 export interface HeadingHierarchy extends MarkdownHeading {
   subheadings: HeadingHierarchy[];
