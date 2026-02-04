@@ -5,6 +5,10 @@ image: "@assets/profile/lory-mattolini.jpg"
 social:
   linkedIn: "https://www.linkedin.com/in/lory-mattolini-55305527b/"
   email: "mattolini.l@outlook.com"
+badges:
+  graphiste: true
+  designer: true
+  marketing: true
 ---
 
-Ma partenaire principale. Titulaire d’un Master en direction artistique, elle m’accompagne dans la conception de sites internet au design soigné, inventif et entièrement personnalisé.
+**Ma partenaire principale**. Titulaire d’un Master en direction artistique, elle m’accompagne dans la conception de sites internet au design soigné, inventif et entièrement personnalisé.

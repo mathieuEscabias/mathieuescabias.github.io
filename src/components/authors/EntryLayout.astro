@@ -5,6 +5,7 @@ import BaseLayout from "@components/base/BaseLayout.astro";
 import { Image } from "astro:assets";
 import { render } from "astro:content";
 import type { AuthorsEntry, BlogEntry } from "@/types";
+import Badges from "@components/common/Badges.astro";
 
 interface Props {
   entry: AuthorsEntry;
@@ -12,7 +13,7 @@ interface Props {
 }
 
 const { entry, recentBlogEntries } = Astro.props;
-const { title, social, description, image, imageAlt } = entry.data;
+const { title, social, badges, description, image, imageAlt } = entry.data;
 
 const { Content } = await render(entry);
 ---
@@ -38,10 +39,11 @@ const { Content } = await render(entry);
               />
             )
           }
-          <h1 class="h3 mb-6">{title}</h1>
+          <h1 class="h3 mb-6 ">{title}</h1>
           <div class="mb-6">
             <Content />
           </div>
+          <Badges badges={badges} />
           <Social links={social} />
         </div>
       </div>

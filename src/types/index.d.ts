@@ -31,6 +31,21 @@ export type SocialLinks = {
   youtube?: string;
 }
 
+export type BadgeData = {
+  devFront?: boolean;
+  devBack?: boolean;
+  serveur?: boolean;
+  baseDeDonnées?: boolean;
+  communication?: boolean;
+  application?: boolean;
+  graphiste?: boolean;
+  designer?: boolean;
+  marketing?: boolean;
+  photographe?: boolean;
+  videaste?: boolean;
+}
+
+
 export type EntryReference = {
   id: string;
   collection: string;

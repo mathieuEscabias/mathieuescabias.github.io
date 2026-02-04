@@ -24,6 +24,20 @@ const social = z.object({
   youtube: z.string().optional(),
 });
 
+// My badge collections
+const badge = z.object({
+  devFront: z.boolean().optional(),
+  devBack: z.boolean().optional(),
+  serveur: z.boolean().optional(),
+  baseDeDonnées: z.boolean().optional(),
+  communication: z.boolean().optional(),
+  application: z.boolean().optional(),
+  graphiste: z.boolean().optional(),
+  designer: z.boolean().optional(),
+  marketing: z.boolean().optional(),
+  photographe: z.boolean().optional(),
+  videaste: z.boolean().optional(),
+});
 
 const authors = defineCollection({
   loader: glob({
@@ -36,6 +50,7 @@ const authors = defineCollection({
       image: image().optional(),
       imageAlt: z.string().default(""),
       social: social.optional(),
+      badges: badge.optional(),
     }),
 });
 

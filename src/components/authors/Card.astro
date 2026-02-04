@@ -3,13 +3,14 @@ import type { AuthorsEntry } from "@/types";
 import { plainify } from "@lib/textConverter";
 import { Image } from "astro:assets";
 import Social from "@components/common/Social.astro";
+import Badges from "@components/common/Badges.astro";
 
 interface Props {
   entry: AuthorsEntry;
 }
 
 const { entry }: Props = Astro.props;
-const { title, image, imageAlt, social } = entry.data;
+const { title, image, imageAlt, social, badges } = entry.data;
 const bodyBrief = entry.body ? plainify(entry.body?.slice(0, 200)) : null;
 ---
 
@@ -33,6 +34,7 @@ const bodyBrief = entry.body ? plainify(entry.body?.slice(0, 200)) : null;
       <a href={`/authors/${entry.id}`}>{title}</a>
     </h4>
     {bodyBrief && <p class="py-3 min-h-[180px]">{bodyBrief}</p>}
+    <Badges badges={badges} />
     <Social links={social} />
   </div>
 </div>
