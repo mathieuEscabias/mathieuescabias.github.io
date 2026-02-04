@@ -24,7 +24,6 @@ Astrogon is a rapidly-customizable multipurpose website template built using Ast
 - Authors - A collection that can **link entries across collections** by the Author field
 - And more:
   - Homepage
-  - Portfolio
   - Terms and Conditions
   - 404 page
 

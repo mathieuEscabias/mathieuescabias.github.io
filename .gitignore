@@ -1,4 +1,3 @@
-
 # logs
 logs
 *.log
@@ -69,7 +68,7 @@ typings/
 **/.cache
 
 # Additonal
-.vscode
+.vscode/
 .astro
 .idea
 .DS_Store
