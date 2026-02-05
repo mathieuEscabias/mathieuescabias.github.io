@@ -7,6 +7,11 @@ social:
   instagram: "https://www.instagram.com/thomas.glds/"
   linkedIn: "https://www.linkedin.com/in/thomas-matysiak/"
   email: "matysiak.thomas@gmail.com"
+badges:
+  devFront: true
+  devBack: true
+  serveur: true
+  application: true
 ---
 
 Mon mentor en développement informatique. Il m’a initié au métier et reste aujourd’hui une référence précieuse, sur qui je peux compter pour résoudre les problématiques les plus complexes.

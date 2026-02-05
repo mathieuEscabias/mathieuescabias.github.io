@@ -3,19 +3,17 @@ import type { MarkdownHeading } from "astro";
 
 export type GenericEntry = CollectionEntry<CollectionKey>;
 
-export type AuthorsEntry = CollectionEntry<"authors">;
+export type collaborateursEntry = CollectionEntry<"collaborateurs">;
 export type BlogEntry = CollectionEntry<"blog">;
 export type DocsEntry = CollectionEntry<"docs">;
 export type HomeEntry = CollectionEntry<"home">;
 export type IndexCardsEntry = CollectionEntry<"indexCards">;
-export type RecipesEntry = CollectionEntry<"recipes">;
 export type TermsEntry = CollectionEntry<"terms">;
 
 export type SearchableEntry =
-  | AuthorsEntry
+  | collaborateursEntry
   | BlogEntry
   | DocsEntry
-  | RecipesEntry
   | TermsEntry;
 
 export type SocialLinks = {
@@ -43,6 +41,8 @@ export type BadgeData = {
   marketing?: boolean;
   photographe?: boolean;
   videaste?: boolean;
+  seo?: boolean;
+  jeuxVideo?: boolean;
 }
 
 

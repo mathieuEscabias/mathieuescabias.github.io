@@ -1,0 +1,12 @@
+---
+import type { collaborateursEntry } from "@/types";
+import CollectionLayout from "@components/collaborateurs/CollectionLayout.astro";
+import { getEntries } from "@lib/contentParser";
+import { getIndex } from "@lib/contentParser";
+import { sortByTitle } from "@lib/sortFunctions";
+
+const authorIndex = await getIndex("collaborateurs") as collaborateursEntry;
+const entries = await getEntries("collaborateurs", sortByTitle) as collaborateursEntry[];
+---
+
+<CollectionLayout authorIndex={authorIndex} entries={entries} />

@@ -3,13 +3,25 @@ import type { BadgeData } from "@/types";
 
 import {
   FaCode,
-  FaServer,
   FaComments,
   FaPalette,
-  FaPenNib,
+  FaRegLightbulb,
   FaBullhorn,
   FaDatabase,
+  FaCameraRetro,
+  FaCogs,
+  FaCoins,
 } from "react-icons/fa";
+
+import { 
+    FaArrowTrendUp,
+    FaVideo,
+    FaMobileScreen,
+} from "react-icons/fa6";
+
+import { 
+    IoGameControllerOutline,
+} from "react-icons/io5"
 
 interface Props {
   badges?: BadgeData;
@@ -25,20 +37,41 @@ const badgeConfig = {
   devFront: {
     icon: FaCode,
     label: "Dev Front-end",
-    color: "rgba(59, 130, 246, 0.15)", // blue
-    borderColor: "rgba(59, 130, 246, 0.3)",
-    textColor: "#3b82f6",
+    color: "rgba(234, 179, 8, 0.15)", // yellow
+    borderColor: "rgba(234, 179, 8, 0.3)",
+    textColor: "#eab308",
   },
   devBack: {
-    icon: FaServer,
-    label: "Dev Back-end",
-    color: "rgba(139, 92, 246, 0.15)", // purple
-    borderColor: "rgba(139, 92, 246, 0.3)",
-    textColor: "#8b5cf6",
+    icon: FaCogs,
+    label: "Dev Back-end", //indigo
+    color: "rgba(59, 130, 246, 0.15)",
+    borderColor: "rgba(59, 130, 246, 0.3)",
+    textColor: "#bfdbfe",
+  },
+    serveur: {
+    icon: FaCoins,
+    label: "serveur",
+    color: "rgba(127, 29, 29, 0.15)",
+    borderColor: "rgba(212, 11, 11, 0.3)",
+    textColor: "#af1414",
+  },
+    baseDeDonnées: {
+    icon: FaDatabase,
+    label: "Base de données",
+    color: "rgba(84, 81, 83, 0.15)", // grey
+    borderColor: "rgba(84, 81, 83, 0.3)",
+    textColor: "#c7c1c4",
   },
   communication: {
     icon: FaComments,
     label: "Communication",
+    color: "rgba(6, 182, 212, 0.15)", // cyan
+    borderColor: "rgba(6, 182, 212, 0.3)",
+    textColor: "#06b6d4",
+  },
+    application: {
+    icon: FaMobileScreen,
+    label: "application",
     color: "rgba(236, 72, 153, 0.15)", // pink
     borderColor: "rgba(236, 72, 153, 0.3)",
     textColor: "#ec4899",
@@ -51,11 +84,11 @@ const badgeConfig = {
     textColor: "#f59e0b",
   },
   designer: {
-    icon: FaPenNib,
+    icon: FaRegLightbulb,
     label: "Design",
-    color: "rgba(16, 185, 129, 0.15)", // green
-    borderColor: "rgba(16, 185, 129, 0.3)",
-    textColor: "#10b981",
+    color: "rgba(132, 204, 22, 0.15)", // lime
+    borderColor: "rgba(132, 204, 22, 0.3)",
+    textColor: "#84cc16",
   },
   marketing: {
     icon: FaBullhorn,
@@ -64,13 +97,35 @@ const badgeConfig = {
     borderColor: "rgba(239, 68, 68, 0.3)",
     textColor: "#ef4444",
   },
-  baseDeDonnées: {
-    icon: FaDatabase,
-    label: "Base de données",
-    color: "rgba(84, 81, 83, 0.15)", // grey
-    borderColor: "rgba(84, 81, 83, 0.3)",
-    textColor: "#c7c1c4",
+   photographe: {
+    icon: FaCameraRetro,
+    label: "Photographe", // brown
+    color: "rgba(120, 53, 15, 0.15)",
+    borderColor: "rgba(225, 91, 13, 0.3)",
+    textColor: "#e15b0d",
   },
+   videaste: {
+    icon: FaVideo,
+    label: "Vidéaste",
+    color: "rgba(139, 92, 246, 0.15)", // purple
+    borderColor: "rgba(139, 92, 246, 0.3)",
+    textColor: "#8b5cf6",
+   },
+   seo: {
+    icon: FaArrowTrendUp,
+    label: "SEO",
+    color: "rgba(59, 130, 246, 0.15)", // night blue
+    borderColor: "rgba(59, 130, 246, 0.3)",
+    textColor: "#3B82F6",
+
+   },
+   jeuxVideo: {
+    icon: IoGameControllerOutline,
+    label: "Dev JV", //teal
+    color: "rgba(20, 184, 166, 0.15)",
+    borderColor: "rgba(20, 184, 166, 0.3)",
+    textColor: "#14b8a6",
+   },
 };
 ---
 

@@ -1,21 +1,48 @@
-The MIT License (MIT)
+Custom Attribution License
 
 Copyright (c) 2026 Mathieu Escabias
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+Permission is granted to use, copy, modify, merge, publish, and distribute this software and its associated documentation (the "Software"), provided that the following conditions are strictly respected:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+The Software may not be used, distributed, or referenced in any project, documentation, or public communication unless explicit attribution is given to the original author.
+
+The attribution must explicitly mention the full name:
+“Mathieu Escabias”
+and must be clearly visible in the project’s documentation, credits, or equivalent section.
+
+Any use of the Software without proper attribution as defined above is strictly prohibited.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+-------------------------------------------
+
+Licence d'attribution personnalisée
+
+Copyright © 2026 Mathieu Escabias
+
+L'autorisation d'utiliser, de copier, de modifier, de fusionner, de publier et de distribuer ce logiciel et sa documentation associée (le « Logiciel ») est accordée, sous réserve du strict respect des conditions suivantes :
+
+Le Logiciel ne peut être utilisé, distribué ou cité dans aucun projet, documentation ou communication publique sans mention explicite de l'auteur original.
+
+Cette mention doit mentionner explicitement le nom complet :
+
+« Mathieu Escabias »
+
+et doit être clairement visible dans la documentation du projet, les crédits ou toute section équivalente.
+
+Toute utilisation du Logiciel sans mention de l'auteur telle que définie ci-dessus est strictement interdite.
+
+LE LOGICIEL EST FOURNI « TEL QUEL », SANS GARANTIE D'AUCUNE SORTE, EXPRESSE OU
+
+IMPLICITE, Y COMPRIS, MAIS SANS S'Y LIMITER, LES GARANTIES DE QUALITÉ MARCHANDE,
+
+D'ADÉQUATION À UN USAGE PARTICULIER ET D'ABSENCE DE CONTREFAÇON. EN AUCUN CAS L'AUTEUR NE SERA RESPONSABLE DE TOUTE RÉCLAMATION, DE TOUT DOMMAGE OU DE TOUTE AUTRE
+RESPONSABILITÉ, QUE CE SOIT DANS LE CADRE D'UNE ACTION CONTRACTUELLE, DÉLICTUELLE OU AUTRE, DÉCOULANT DE,
+
+L'UTILISATION OU D'AUTRES TRANSACTIONS RELATIVES AU LOGICIEL.

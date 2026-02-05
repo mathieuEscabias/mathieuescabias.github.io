@@ -1,12 +1,12 @@
 ---
-import type { AuthorsEntry } from "@/types";
+import type { collaborateursEntry } from "@/types";
 import BaseLayout from "@components/base/BaseLayout.astro";
 import PageHeader from "@components/common/PageHeader.astro";
-import AuthorCard from "@components/authors/Card.astro";
+import AuthorCard from "@components/collaborateurs/Card.astro";
 
 interface Props {
-  authorIndex: AuthorsEntry;
-  entries: AuthorsEntry[];
+  authorIndex: collaborateursEntry;
+  entries: collaborateursEntry[];
 }
 
 const { authorIndex, entries } = Astro.props;
