@@ -7,7 +7,7 @@ interface Props {
 }
 
 const { entry } = Astro.props;
-const { title, image, imageAlt } = entry.data;
+const { title, image, imageAlt, date } = entry.data;
 ---
 
 <div
@@ -38,6 +38,7 @@ const { title, image, imageAlt } = entry.data;
             {title}
           </h4>
         </div>
+            {date && <p class="glass-t text-xs absolute bottom-1 text-center px-2 py-1 mx-2 rounded-lg"> {date.toLocaleDateString('fr-FR')} </p>}
       </div>
     </a>
   </div>

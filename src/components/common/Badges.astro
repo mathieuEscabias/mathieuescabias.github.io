@@ -131,7 +131,7 @@ const badgeConfig = {
 
 {
   badges && (
-    <div class="flex flex-wrap gap-2 py-2 justify-center">
+    <div class="flex flex-wrap gap-2 my-2 justify-center min-h-[75px]">
       {Object.entries(badges).map(([key, value]) => {
         if (!value) return null;
         const config = badgeConfig[key as keyof typeof badgeConfig];

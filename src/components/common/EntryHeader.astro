@@ -80,7 +80,7 @@ tags?.sort((a: string, b: string) => a.localeCompare(b));
     image && showImage && (
       <div class="mb-8 glass rounded-lg intersect:animate-fadeDown opacity-0 intersect-no-queue">
         <Image
-          class="w-full rounded-lg"
+          class="w-full max-h-[400px] object-cover rounded-lg"
           src={image}
           alt={imageAlt || ""}
           height={500}
@@ -96,7 +96,7 @@ tags?.sort((a: string, b: string) => a.localeCompare(b));
         <h1 set:html={markdownify(title)} class="mb-4" />
         <ul>
           {author && showAuthor && (
-            <li class="mr-1 inline-block">
+            <li class="mr-1 inline-block"> projet réalisé avec :
               <a href={`/collaborateurs/${slugify(author.id)}`}>
                 <FaRegUserCircle className={"-mt-1 inline-block"} />
                 {upperHumanize(author.id)}
@@ -112,8 +112,8 @@ tags?.sort((a: string, b: string) => a.localeCompare(b));
           {pubDate && showPubDate && (
             <li class="mr-1 inline-block">
               <FaRegCalendarAlt className={"ml-2 -mt-1 inline-block"} />
-              Published
-              {formatDate(pubDate)}
+              Publié le
+                  {new Date(pubDate).toLocaleDateString('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' })}
             </li>
           )}
           {modDate && showModDate && (

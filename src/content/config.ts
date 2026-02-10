@@ -75,6 +75,7 @@ const docs = defineCollection({
   loader: glob({ pattern: "**\/[^_]*.{md,mdx}", base: "./src/content/docs" }),
   schema: ({ image }) =>
     searchable.extend({
+      date: z.date().optional(),
       pubDate: z.date().optional(),
       modDate: z.date().optional(),
       image: image().optional(),

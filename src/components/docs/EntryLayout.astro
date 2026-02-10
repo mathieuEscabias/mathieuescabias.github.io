@@ -13,7 +13,7 @@ interface Props {
 
 const { entry, browserMenu } = Astro.props;
 const { Content, headings } = await render(entry);
-const { title, description, hideNav, hideToc, image } = entry.data;
+const { title, description, hideNav, hideToc, image, } = entry.data;
 
 const globalHideNav = false; // set true to always hide the nav bar (left side menu)
 const globalHideToc = false; // set true to always hide the table of contents (right side menu)
@@ -60,7 +60,7 @@ if (actuallyHideNav && actuallyHideToc) {
     <div class=`w-full ${articleClass}`>
       <article class="">
         <section class="">
-          <EntryHeader entry={entry} showImage showPubDate />
+          <EntryHeader entry={entry} showImage showPubDate showAuthor />
         </section>
         <section class="content mb-4 glass px-4 rounded-lg">
           <Content />

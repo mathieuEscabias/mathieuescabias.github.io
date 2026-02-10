@@ -1,10 +1,10 @@
 ---
-title: Backgrounds
+title: Mon premier site internet
 description: "A collection of backgrounds that shape a character’s skills, motivations, and story before becoming an adventurer."
-image: "@assets/docs/characters/backgrounds/cover.jpg"
+image: "@assets/docs/projets/CPA.png"
 imageAlt: "Painting of a hooded figure with light beaming out from his chest"
-pubDate: 2024-07-15
-modDate: 2024-08-03
+pubDate: 2021-03-02
+author: jane-doe
 ---
 
 Every adventurer has a story, a life led before they set out on their journey. Backgrounds provide skills, tools, and roleplay opportunities that reflect where characters come from and what drives them.
