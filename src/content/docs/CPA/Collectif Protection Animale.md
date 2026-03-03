@@ -1,143 +1,91 @@
 ---
 title: Mon premier site internet
-description: "A collection of backgrounds that shape a character’s skills, motivations, and story before becoming an adventurer."
 image: "@assets/docs/projets/CPA.png"
-imageAlt: "Painting of a hooded figure with light beaming out from his chest"
+imageAlt: "Logo de CPA"
 pubDate: 2021-03-02
-author: jane-doe
+author: mathieu-escabias
 ---
 
-Every adventurer has a story, a life led before they set out on their journey. Backgrounds provide skills, tools, and roleplay opportunities that reflect where characters come from and what drives them.
+### Collectif Animale — Premier projet web
 
----
-
-## Acolyte
-
-Raised in the service of a deity, acolytes are deeply spiritual and often seek to spread their faith.
-
-### Features
-
-- **Skill Proficiencies**: Insight, Religion
-- **Tool Proficiency**: None
-- **Languages**: Two of your choice
-- **Equipment**: Holy symbol, prayer book, 5 sticks of incense, common clothes, 15 gold pieces
-
-### Feature: **Shelter of the Faithful**
-
-**You can seek aid and sanctuary** from those of your faith, often gaining room and board at temples.
+Chaque développeur a une première création — un projet où tout est nouveau, excitant et parfois un peu impressionnant. Ce site représente le début de mon parcours dans le développement web concret, où la passion comptait autant que la technique.
 
 ---
 
-## Criminal
+### Présentation
+
+Collectif Animale est le tout premier site internet que j’ai réalisé. Bien que l’association soit aujourd’hui dissoute et que le site ne soit plus en ligne, il reste une étape fondatrice dans mon parcours.
+
+Il a été conçu avec WordPress et le constructeur de pages Elementor, marquant ma première expérience complète de création d’un site de A à Z.
+
+### Contexte du projet
+
+Ce projet a été développé pour une association de protection animale souhaitant présenter sa mission, gagner en visibilité et attirer de nouveaux bénévoles.
+
+Étant mon premier site, j’étais encore un peu maladroit sur certains aspects, mais j’y ai mis beaucoup de cœur et d’implication. Le résultat était propre, fonctionnel et parfaitement adapté à leurs besoins.
+
+---
+
+### Structure du site
 
 Criminals have lived on the wrong side of the law, honing their skills in deception and survival.
 
-### Features
+**Pages réalisées**
 
-- **Skill Proficiencies**: Deception, Stealth
-- **Tool Proficiencies**: One type of gaming set, thieves’ tools
-- **Languages**: None
-- **Equipment**: Crowbar, dark clothes, 15 gold pieces
+- **Présentation de l’association**: Description de la mission et des valeurs
+- **Qui sommes-nous**: Histoire et contexte de l’association
+- **Présentation de l’équipe**: Mise en avant des membres
+- **Formulaire de contact**: Moyen de communication avec les visiteurs
+- **Mentions légales**: Conformité et informations légales
 
-### Feature: **Criminal Contact**
-
-You have a reliable and trustworthy contact within the criminal underworld who provides information or aid.
-
----
-
-## Folk Hero
-
-Hailing from a humble origin, folk heroes are champions of the people, inspired by tales of bravery.
-
-### Features
-
-- **Skill Proficiencies**: Animal Handling, Survival
-- **Tool Proficiencies**: One type of artisan’s tools, vehicles (land)
-- **Languages**: None
-- **Equipment**: Iron pot, common clothes, shovel, 10 gold pieces
-
-### Feature: **Rustic Hospitality**
-
-You can find shelter and aid among common folk, who see you as a hero of their cause.
+Le site était volontairement simple et clair, avec un accent sur la lisibilité et l’accessibilité.
 
 ---
 
-## Noble
 
-Born into privilege, nobles are accustomed to power and influence, often using it to further their goals.
+### Mise en place technique
 
-### Features
+## Caractéristiques
 
-- **Skill Proficiencies**: History, Persuasion
-- **Tool Proficiency**: One type of gaming set
-- **Languages**: One of your choice
-- **Equipment**: Fine clothes, signet ring, scroll of pedigree, 25 gold pieces
-
-### Feature: **Position of Privilege**
-
-You command respect among the aristocracy, and common folk defer to your status.
+- Site entièrement réalisé avec **WordPress** et **Elementor**
+- Hébergement chez **o2switch**
+- Système de **sauvegarde automatique** pour éviter toute perte de données
+- Modifications effectuées **directement en production**
+- Mise en place d’une **base fiable** et stable
 
 ---
 
-## Sage
+## Impact du site
 
-Sages are scholars who have devoted their lives to the pursuit of knowledge, whether arcane or mundane.
+**Le site a apporté une réelle valeur à l’association.**
 
-### Features
-
-- **Skill Proficiencies**: Arcana, History
-- **Tool Proficiency**: None
-- **Languages**: Two of your choice
-- **Equipment**: Ink and quill, small knife, common clothes, 10 gold pieces
-
-### Feature: **Researcher**
-
-If you don’t know a piece of information, you often know where to find it or who to ask.
+Il a renforcé leur crédibilité et leur visibilité, tout en permettant de générer de nouveaux candidats et bénévoles. Disposer d’une présence en ligne professionnelle a facilité la découverte et la confiance envers l’association.
 
 ---
 
-## Soldier
+### Collaboration et formation
 
-Soldiers are disciplined warriors trained in battle, loyal to a cause or commander.
+Au-delà du développement, j’ai accompagné l’équipe pour leur permettre d’être autonome dans la gestion du site.
 
-### Features
 
-- **Skill Proficiencies**: Athletics, Intimidation
-- **Tool Proficiency**: One type of gaming set, vehicles (land)
-- **Languages**: None
-- **Equipment**: Insignia of rank, trophy from a defeated foe, uniform, 10 gold pieces
-
-### Feature: **Military Rank**
-
-You can invoke your rank to requisition simple supplies or gain access to friendly military encampments.
+- Formation de deux personnes à l’utilisation du site
+- Explication du fonctionnement et des bonnes pratiques
+- Réalisation d’une vidéo explicative avec eux pour documenter l’utilisation
+- Cette expérience m’a appris l’importance de la transmission de connaissances et de l’autonomie client.
 
 ---
 
-## Outlander
+### **Retour personnel**
 
-Outlanders hail from the wilderness, skilled in survival and self-reliance.
+Ce projet a une valeur particulière pour moi car il représente le moment où je suis passé de l’apprentissage à la pratique.
+Même si je manquais encore d’expérience, j’ai énormément appris sur la communication avec un client, les contraintes réelles d’un projet et la responsabilité de créer un outil utile.
 
-### Features
-
-- **Skill Proficiencies**: Athletics, Survival
-- **Tool Proficiency**: One type of musical instrument
-- **Languages**: One of your choice
-- **Equipment**: Staff, hunting trap, animal trophy, traveler’s clothes, 10 gold pieces
-
-### Feature: **Wanderer**
-
-You can always recall the general layout of terrain and can find food and water for up to five people.
+le site n'es plus disponible mais voici un lien wayBackMachine pour avoir une idée de ce a quoi cela ressemblais : https://web.archive.org/web/20240902011944/http://copran-animale.fr/
 
 ---
 
-## Creating a Background
+### Conclusion
 
-Players are encouraged to work with the DM to create custom backgrounds, incorporating elements that fit their character’s story. Custom backgrounds can mix and match skill proficiencies, tool proficiencies, and features to best reflect the character’s unique history.
+Chaque développeur se souvient de son premier projet — non pas parce qu’il était parfait, mais parce qu’il marque le début de tout le reste.
 
----
-
-### Background and Roleplay
-
-Your background is more than just mechanics—it’s a vital part of your character’s identity. It shapes their interactions, motivations, and outlook on the world.
-
-Will your criminal past come back to haunt you? Will your noble name open doors or create enemies? The choice is yours.
+Collectif Animale est le mien.

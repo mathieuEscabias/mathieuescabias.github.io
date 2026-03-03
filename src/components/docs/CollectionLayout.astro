@@ -1,24 +1,114 @@
 ---
 import BaseLayout from "@components/base/BaseLayout.astro";
 import DocCard from "@components/docs/Card.astro";
-import PageHeader from "@components/common/PageHeader.astro";
 import type { DocsEntry } from "@/types";
+import { render } from "astro:content";
+import TechBadge from "@components/common/TechBadge.astro";
+import { FaRegCalendarAlt, FaRegUserCircle, FaArrowLeft, FaMousePointer, FaTimes, FaCheck } from "react-icons/fa";
+import { upperHumanize, slugify } from "@lib/textConverter";
 
 interface Props {
   collectionIndex: DocsEntry;
-  entries: DocsEntry[]; // this could either be the set of entries in a doc group, or the set of indices of the doc groups
+  entries: DocsEntry[];
 }
 
 const { collectionIndex, entries } = Astro.props;
+
+const { Content } = await render(collectionIndex);
+const { title, description, date, author, technologies, url, urlActive } = collectionIndex.data;
 ---
 
 <BaseLayout
-  title={collectionIndex.data.title}
+  title={title}
   image={collectionIndex.data.image?.src}
-  description={collectionIndex.data.description}
+  description={description}
 >
-  <PageHeader title={collectionIndex.data.title}/>
-  <section class="section">
+  
+  <!-- Section d'informations du dossier -->
+  <div class="container md:col-9">
+
+    <div class="glass p-6 rounded-lg mb-8">
+
+
+      <!-- title -->
+      <h1 class="my-5 text-center" set:text={upperHumanize(title)} />
+      
+      <!-- Description -->
+      {description && (
+        <p class="text-sm mb-4 text-center">{description}</p>
+      )}
+      
+
+  <!-- Technologies -->
+  {technologies && technologies.length > 0 && (
+    <div>
+      <div class="flex flex-wrap gap-6 justify-center">
+        {technologies.map((tech, index) => (
+          <TechBadge tech={tech} delay={index * 100} />
+        ))}
+      </div>
+    </div>
+  )}
+
+      <!--Collaborator  -->
+      <div class="flex flex-wrap gap-4 mt-5 opacity-80">
+        {author && (
+          <a href={`/collaborateurs/${slugify(author.id)}`} class="hover:opacity-100">
+            <FaRegUserCircle className="-mt-1 inline-block mr-1" />
+            {upperHumanize(author.id)}
+          </a>
+        )}
+        <!-- Date -->
+        {date && (
+          <span>
+            <FaRegCalendarAlt className="-mt-1 inline-block mr-1" />
+            Réalisé le : {new Date(date).toLocaleDateString('fr-FR', { 
+              day: '2-digit', 
+              month: 'long', 
+              year: 'numeric' 
+            })}
+          </span>
+        )}
+      <!-- Url -->
+  {url && (
+    <>
+      {urlActive ? (
+        <a href={url} target="_blank" rel="noopener noreferrer" class="hover:opacity-100 flex items-center gap-1">
+          <FaMousePointer className="-mt-1 inline-block" />
+          <FaCheck className="text-green-500" />
+          {url.replace(/^https?:\/\//, '')}
+        </a>
+      ) : (
+        <span class="opacity-50 flex items-center gap-1 cursor-not-allowed">
+          <FaMousePointer className="-mt-1 inline-block" />
+          <FaTimes className="text-red-500" />
+          {url.replace(/^https?:\/\//, '')} (site plus disponible)
+        </span>
+      )}
+    </>
+  )}
+
+      </div>
+      
+      <!-- Contenu markdown de l'index.md -->
+      <div class="content">
+        <Content />
+      </div>
+    </div>
+  </div>
+
+  <!-- fleche retour -->
+  <div class="container md:col-9">
+  <a 
+    href="/docs/" 
+    class="inline-flex items-center gap-2 glass px-4 py-2 rounded-lg hover:scale-105 transition-transform duration-200"
+  >
+    <FaArrowLeft className="text-sm" />
+  </a>
+  </div>
+
+  <!-- Section des cartes de fichiers -->
+  <section class="section p-0">
     <div class="container">
       <div class="row">
         {

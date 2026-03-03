@@ -2,7 +2,7 @@ import { defineCollection, reference, z } from "astro:content";
 import { glob } from "astro/loaders";
 
 // May also need to update /src/types/index.d.ts when updating this file
-// When updating the set of searchable collections, update collectionList in /src/pages/search.astro
+// When updating the set of searchable collections, update collection List in /src/pages/search.astro
 
 const searchable = z.object({
   title: z.string(),
@@ -76,12 +76,16 @@ const docs = defineCollection({
   schema: ({ image }) =>
     searchable.extend({
       date: z.date().optional(),
+      author: reference("collaborateurs").optional(),
       pubDate: z.date().optional(),
       modDate: z.date().optional(),
       image: image().optional(),
       imageAlt: z.string().default(""),
       hideToc: z.boolean().default(false),
       hideNav: z.boolean().default(false),
+      url: z.string().optional(),
+      technologies: z.array(z.string()).optional(),
+      urlActive: z.boolean().default(true),
     }),
 });
 
