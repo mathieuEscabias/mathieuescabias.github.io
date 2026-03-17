@@ -40,6 +40,8 @@ Criminals have lived on the wrong side of the law, honing their skills in decept
 
 Le site était volontairement simple et clair, avec un accent sur la lisibilité et l’accessibilité.
 
+![gif](@assets/docs/projets/gif-CPA.gif "gif du site CPA")
+
 ---
 
 
@@ -67,7 +69,6 @@ Il a renforcé leur crédibilité et leur visibilité, tout en permettant de gé
 
 Au-delà du développement, j’ai accompagné l’équipe pour leur permettre d’être autonome dans la gestion du site.
 
-
 - Formation de deux personnes à l’utilisation du site
 - Explication du fonctionnement et des bonnes pratiques
 - Réalisation d’une vidéo explicative avec eux pour documenter l’utilisation
@@ -89,3 +90,4 @@ le site n'es plus disponible mais voici un lien wayBackMachine pour avoir une id
 Chaque développeur se souvient de son premier projet — non pas parce qu’il était parfait, mais parce qu’il marque le début de tout le reste.
 
 Collectif Animale est le mien.
+
