@@ -1,0 +1,24 @@
+---
+import type { DocsEntry } from "@/types";
+import { getEntries } from "@lib/contentParser";
+import { getTaxa } from "@lib/taxonomyParser";
+import taxonomyFilter from "@lib/taxonomyFilter";
+import CategoryLayout from "@components/docs/CategoryLayout.astro";
+
+export async function getStaticPaths() {
+  const taxa = await getTaxa("docs", "categories");
+  const paths = taxa.map((taxon) => ({
+    params: {
+      category: taxon,
+    },
+    props: { taxon },
+  }));
+  return paths;
+}
+
+const { taxon } = Astro.props;
+const entries = await getEntries("docs") as DocsEntry[];
+const filteredEntries: DocsEntry[] = taxonomyFilter(entries, "categories", taxon!);
+---
+
+<CategoryLayout taxon={taxon} entries={filteredEntries} />

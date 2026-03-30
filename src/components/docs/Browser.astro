@@ -1,47 +1,69 @@
 ---
+import { lowerHumanize, upperHumanize } from "@lib/textConverter";
+import { FaRegFolder, FaHashtag } from "react-icons/fa";
+import Button from "@components/common/Button.astro";
 import { ScrollArea } from "@components/common/shortcodes/ScrollArea";
-import type { MenuItem } from "@/types";
 
 interface Props {
-  menu: MenuItem[];
-  currentPage: string;
+  tags: string[];
+  categories: string[];
+  allCategories: string[];
 }
 
-const { menu, currentPage } = Astro.props;
+const { tags, categories, allCategories }: Props = Astro.props;
 ---
 
-{
-  menu.length > 0 && (
-    <div class="relative glass rounded-lg p-4 my-2 w-full intersect:animate-fadeRight opacity-0">
-      <ScrollArea className="h-full" client:only="react">
-        <h2 class="text-2xl border-none">Documents</h2>
-        <ul class="list-none m-0">
-          {menu.map((item) => (
-            <li class="ml-0">
-              <a
-                href={`/docs/${item.id}`}
-                class={`w-full leading-none no-underline ${item.id === currentPage ? "font-bold" : ""}`}
-              >
-                {item.title}
-              </a>
-              {item.children.length > 0 && (
-                <ul class="list-none m-0">
-                  {item.children.map((child) => (
-                    <li class="ml-4">
-                      <a
-                        href={`/docs/${child.id}`}
-                        class={`w-full leading-none no-underline ${child.id === currentPage ? "font-bold" : ""}`}
-                      >
-                        {child.title}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </li>
-          ))}
-        </ul>
-      </ScrollArea>
+<ScrollArea className="h-full" client:only="react">
+  <!-- categories -->
+  <div class="glass rounded-lg p-4 m-2 mb-4 intersect:animate-fadeLeft opacity-0">
+    <div>
+      <h4 class="mb-2">
+        <a href="/docs/categories">
+          <FaRegFolder className={"mr-1 -mt-1.5 inline-block"} />
+          Categories
+        </a>
+      </h4>
+      <hr class="mb-2 -mt-1" />
+      <ul class="space-y-2">
+        {
+          categories.map((category) => {
+            const count = allCategories.filter((c) => c === category).length;
+            return (
+              <li>
+                <a href={`/docs/categories/${category}`}>
+                  {upperHumanize(category)}{" "}
+                  <div class="inline-block pl-1">({count})</div>
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
     </div>
-  )
-}
+  </div>
+  <!-- tags -->
+  <div class="glass rounded-lg p-4 m-2 intersect:animate-fadeLeft opacity-0">
+    <div>
+      <h4 class="mb-2">
+        <a href="/docs/tags">
+          <FaHashtag className={"mr-1 -mt-1.5 inline-block"} />
+          Tags
+        </a>
+      </h4>
+      <hr class="mb-2 -mt-1" />
+      <ul>
+        {
+          tags.map((tag: string) => (
+            <li class="inline-block m-1">
+              <Button
+                label={tag}
+                link={`/docs/tags/${lowerHumanize(tag)}`}
+                type="secondary"
+              />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</ScrollArea>

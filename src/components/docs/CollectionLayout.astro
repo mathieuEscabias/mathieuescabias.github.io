@@ -15,7 +15,7 @@ interface Props {
 const { collectionIndex, entries } = Astro.props;
 
 const { Content } = await render(collectionIndex);
-const { title, description, date, author, technologies, url, urlActive } = collectionIndex.data;
+const { title, description, date, author, technologies, url, urlActive, categories, tags } = collectionIndex.data;
 ---
 
 <BaseLayout
@@ -44,7 +44,7 @@ const { title, description, date, author, technologies, url, urlActive } = colle
     <div>
       <div class="flex flex-wrap gap-6 justify-center">
         {technologies.map((tech, index) => (
-          <TechBadge tech={tech} delay={index * 100} />
+          <TechBadge tech={tech}/>
         ))}
       </div>
     </div>
@@ -97,8 +97,13 @@ const { title, description, date, author, technologies, url, urlActive } = colle
     </div>
   </div>
 
-  <!-- fleche retour -->
-  <div class="container md:col-9">
+
+
+
+  <!-- Section des cartes de fichiers -->
+  <section class=" p-0">
+    <!-- fleche retour -->
+        <div class="container">
   <a 
     href="/docs/" 
     class="inline-flex items-center gap-2 glass px-4 py-2 rounded-lg hover:scale-105 transition-transform duration-200"
@@ -106,9 +111,6 @@ const { title, description, date, author, technologies, url, urlActive } = colle
     <FaArrowLeft className="text-sm" />
   </a>
   </div>
-
-  <!-- Section des cartes de fichiers -->
-  <section class="section p-0">
     <div class="container">
       <div class="row">
         {
@@ -121,4 +123,5 @@ const { title, description, date, author, technologies, url, urlActive } = colle
       </div>
     </div>
   </section>
+  
 </BaseLayout>

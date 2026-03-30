@@ -1,11 +1,11 @@
 ---
-import TaxaLayout from "@components/blog/TaxaLayout.astro";
+import CategoriesLayout from "@components/docs/CategoriesLayout.astro";
 import { getTaxa, getTaxaMultiset } from "@lib/taxonomyParser";
 
-const collection = "blog";
+const collection = "docs";
 const taxonomy = "categories";
 const taxa = await getTaxa(collection, taxonomy);
 const allTaxa = await getTaxaMultiset(collection, taxonomy);
 ---
 
-<TaxaLayout taxonomy={taxonomy} taxa={taxa} allTaxa={allTaxa} />
+<CategoriesLayout taxonomy={taxonomy} taxa={taxa} allTaxa={allTaxa} />

@@ -56,21 +56,6 @@ const collaborateurs = defineCollection({
     }),
 });
 
-const blog = defineCollection({
-  loader: glob({ pattern: "**\/[^_]*.{md,mdx}", base: "./src/content/blog" }),
-  schema: ({ image }) =>
-    searchable.extend({
-      date: z.date().optional(),
-      image: image().optional(),
-      imageAlt: z.string().default(""),
-      author: reference("collaborateurs").optional(),
-      categories: z.array(z.string()).optional(),
-      tags: z.array(z.string()).optional(),
-      complexity: z.number().default(1),
-      hideToc: z.boolean().default(false),
-    }),
-});
-
 const docs = defineCollection({
   loader: glob({ pattern: "**\/[^_]*.{md,mdx}", base: "./src/content/docs" }),
   schema: ({ image }) =>
@@ -86,6 +71,8 @@ const docs = defineCollection({
       url: z.string().optional(),
       technologies: z.array(z.string()).optional(),
       urlActive: z.boolean().default(true),
+      categories: z.array(z.string()).optional(),
+      tags: z.array(z.string()).optional(),
     }),
 });
 
@@ -126,7 +113,6 @@ const terms = defineCollection({
 // Export collections
 export const collections = {
   collaborateurs,
-  blog,
   docs,
   home,
   indexCards,

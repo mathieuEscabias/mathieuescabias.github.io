@@ -1,0 +1,42 @@
+---
+import BaseLayout from "@components/base/BaseLayout.astro";
+import PageHeader from "@components/common/PageHeader.astro";
+import DocCard from "@components/docs/Card.astro";
+import { upperHumanize } from "@lib/textConverter";
+import { FaArrowLeft } from "react-icons/fa";
+import type { DocsEntry } from "@/types";
+
+interface Props {
+  taxon: string;
+  entries: DocsEntry[];
+}
+
+const { taxon, entries }: Props = Astro.props;
+---
+
+<BaseLayout title={upperHumanize(taxon)}>
+  <PageHeader title={upperHumanize(taxon)} />
+
+  <div class="container md:col-9">
+  <a 
+    href="/docs/" 
+    class="inline-flex items-center gap-2 glass px-4 py-2 rounded-lg hover:scale-105 transition-transform duration-200"
+  >
+      <FaArrowLeft className="text-sm" />
+    </a>
+  </div>
+
+  <section class="section p-0">
+    <div class="container">
+      <div class="row">
+        {
+          entries.map((entry) => (
+            <div class="md:col-6 lg:col-4 h-min p-2">
+              <DocCard entry={entry} />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>

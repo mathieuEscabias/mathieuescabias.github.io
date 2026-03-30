@@ -1,10 +1,9 @@
 ---
 interface Props {
   tech: string;
-  delay?: number;
 }
 
-const { tech, delay = 0 } = Astro.props;
+const {tech} = Astro.props;
 
 // Mapping des technos vers leurs SVG
 const techSVGs: Record<string, string> = {
@@ -50,11 +49,24 @@ const techSVGs: Record<string, string> = {
 };
 
 const techNames: Record<string, string> = {
-  prestashop: "PrestaShop",
   php: "PHP",
-  javascript: "JavaScript",
-  mysql: "MySQL",
-  // etc...
+  wordpress: "WordPress",
+  prestashop: "PrestaShop",
+  shopify: "Shopify",
+  filezilla: "FileZilla",
+  o2switch: "O2switch",
+  github: "GitHub",
+  "html/css": "HTML/CSS",
+  ovh: "OVH",
+  seo: "SEO",
+  "c#": "C#",
+  csv: "CSV",
+  excel: "Excel",
+  elementor: "Elementor",
+  node: "Node.js",
+  sql: "SQL",
+  flutter: "Flutter",
+
 };
 
 const svg = techSVGs[tech.toLowerCase()] || "";
@@ -71,7 +83,6 @@ const name = techNames[tech.toLowerCase()] || tech;
   <div 
     class="glass rounded-full p-2 w-16 h-16 flex items-center justify-center intersect animate__animated no-intersect animate__slow animate__flipInY" 
     data-intersect-animate="animate__flipInY"
-    style={`animation-delay: ${delay}ms;`}
     set:html={svg}
   />
 </div>

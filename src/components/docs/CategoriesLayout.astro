@@ -14,10 +14,10 @@ const { taxonomy, taxa, allTaxa }: Props = Astro.props;
 ---
 
 <BaseLayout title={upperHumanize(taxonomy)}>
-  <PageHeader title={upperHumanize(taxonomy)} />
-  <section class="section">
+<PageHeader title={upperHumanize(taxonomy)} />
+<section class="section">
     <div class="container text-center">
-      <ul>
+    <ul>
         {
           taxa.map((taxon: string) => {
             const count = allTaxa.filter((c) => c === taxon).length;
@@ -25,14 +25,14 @@ const { taxonomy, taxa, allTaxa }: Props = Astro.props;
               <li class="m-3 inline-block">
                 <Button
                   label=`${upperHumanize(taxon)} (${count})`
-                  link={`/blog/${taxonomy}/${taxon}`}
+                  link={`/docs/${taxonomy}/${taxon}`}
                   hoverInvert
                 />
               </li>
             );
           })
         }
-      </ul>
+    </ul>
     </div>
-  </section>
+</section>
 </BaseLayout>

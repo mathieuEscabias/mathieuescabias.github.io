@@ -13,7 +13,7 @@ Astrogon is a rapidly-customizable multipurpose website template built using Ast
 
 ### Content Collections
 
-- Blog
+
   - Implements **Categories** and **Tags**, for easy filtering and searching
 - Documentation
   - **Multi-level** document structure

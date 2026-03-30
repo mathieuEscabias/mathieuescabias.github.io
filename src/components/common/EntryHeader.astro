@@ -28,7 +28,6 @@ interface EntryData {
   modDate?: string;
   categories?: string[];
   tags?: string[];
-  complexity?: number;
 }
 
 interface Props {
@@ -68,7 +67,6 @@ const {
   date,
   pubDate,
   modDate,
-  complexity,
 } = entry.data as EntryData;
 
 categories?.sort((a: string, b: string) => a.localeCompare(b));
@@ -123,16 +121,10 @@ tags?.sort((a: string, b: string) => a.localeCompare(b));
               {formatDate(modDate)}
             </li>
           )}
-          {complexity && complexity > 0 && showReadingTime && (
-            <li class="mr-1 inline-block">
-              <FaRegClock className={"ml-2 -mt-1 inline-block"} />
-              {readingTime(entry.body!, complexity)}
-            </li>
-          )}
           {categories && showCategories && (
             <li class="mr-1 inline-block">
               {categories.map((category: string, index: number) => (
-                <a href={`/blog/categories/${slugify(category)}`}>
+                <a href={`/docs/categories/${slugify(category)}`}>
                   <FaRegFolder className={"ml-2 -mt-1 inline-block"} />
                   {upperHumanize(category)}
                 </a>
@@ -142,7 +134,7 @@ tags?.sort((a: string, b: string) => a.localeCompare(b));
           {tags && showTags && (
             <li class="mr-1 inline-block">
               {tags.map((tag: string, index: number) => (
-                <a href={`/blog/tags/${slugify(tag)}`}>
+                <a href={`/docs/tags/${slugify(tag)}`}>
                   <FaHashtag className={"ml-2 -mt-1 inline-block"} />
                   {lowerHumanize(tag)}
                 </a>
