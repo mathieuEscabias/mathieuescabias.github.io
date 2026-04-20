@@ -10,7 +10,7 @@ interface Props {
 }
 
 const { entry } = Astro.props;
-const { image, imageAlt, title, content } = entry.data;
+const { image, imageDark, imageAlt, title, content } = entry.data;
 ---
 
 <BaseLayout>
@@ -25,20 +25,32 @@ const { image, imageAlt, title, content } = entry.data;
   <div class="container">
     <div class="row justify-center">
       <div class="text-center lg:col-6">
-        {
-          image && (
-            <div class="blur-[0px]">
-              <Image
-                class="mb-6 w-64"
-                src={image}
-                alt={imageAlt}
-                width={1024}
-                height={1024}
-                loading="eager"
-              />
-            </div>
-          )
-        }
+{
+  image && (
+    <div class="blur-[0px]">
+      {/* Logo mode light */}
+      <Image
+        class="mb-6 w-64 dark:hidden"
+        src={image}
+        alt={imageAlt}
+        width={1024}
+        height={1024}
+        loading="eager"
+      />
+      {/* Logo mode dark */}
+      {imageDark && (
+        <Image
+          class="mb-6 w-64 hidden dark:block"
+          src={imageDark}
+          alt={imageAlt}
+          width={1024}
+          height={1024}
+          loading="eager"
+        />
+      )}
+    </div>
+  )
+}
         <h1 set:html={markdownify(title)} class="mb-4" />
         <p set:html={markdownify(content)} class="text-xl" />
       </div>
