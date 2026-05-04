@@ -1,10 +1,8 @@
 ---
 title: Vincent Hogg
-email: vincenthogg.dev@gmail.com
 image: "@assets/profile/vincent-hogg.jpg"
 social:
   linkedIn: "https://www.linkedin.com/in/hvince/"
-  email: "vincenthogg.dev@gmail.com"
 badges:
   baseDeDonnées: true
   serveur: true

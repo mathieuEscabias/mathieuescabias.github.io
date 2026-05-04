@@ -8,7 +8,20 @@
 
 > 🇫🇷 [Lire en français](README.md)
 
-**Develocoeur** is my personal website, designed and built from scratch with Astro, Tailwind CSS, and React. It gathers my projects, articles, and who I am as a developer.
+**Develocoeur** — *Building accessible, human-centered websites that fit your budget.*
+
+This is the web agency behind this repository: freelance development focused on client closeness, clear communication, and quality work. The site you're looking at is both the agency's showcase and a hands-on demonstration of what we can do.
+
+## What We Offer
+
+- **Website creation** — landing pages, portfolios, e-commerce, custom builds
+- **Web applications** — full stack, from front to back
+- **SEO** — organic search optimization and performance tuning
+- **Maintenance & support** — ongoing care, not just delivery
+- **Training** — coaching for teams and independents alike
+- **Anything else** — got a need? Let's talk!
+
+> Got a project in mind? Head over to [mathieuescabias.github.io](https://mathieuescabias.github.io/) 👋
 
 ## Tech Stack
 
@@ -24,7 +37,7 @@
 ### Content
 
 - **Blog** — articles with categories, tags, and estimated reading time
-- **Projects** — showcase of my work
+- **Projects** — showcase of our work
 - **Homepage**, 404 page, and legal notices
 
 #### Content Components
@@ -50,13 +63,6 @@
 - **Social Media sharing** component
 - Built-in **SEO** — sitemap, RSS feed, and structured metadata
 - Easily customizable color scheme and typography
-
-## Recommended Tools
-
-- [Git](https://git-scm.com)
-- [Node Version Manager](https://github.com/nvm-sh/nvm)
-- [Visual Studio Code](https://code.visualstudio.com/)
-
 
 ## License
 
