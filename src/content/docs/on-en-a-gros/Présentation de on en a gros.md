@@ -7,7 +7,7 @@ author: mathieu-escabias
 tags: [association, speedrun]
 ---
 
-### Onena Gros — Le site speedrun
+### On en a Gros — Le site speedrun
 
 Connaissez-vous les speedruns ? C'est une pratique dans le monde du jeu vidéo qui consiste à finir un jeu le plus vite possible. Ce site a été réalisé en 2h montre en main — en buvant des coups avec mon cousin.
 
