@@ -4,7 +4,14 @@ import DocCard from "@components/docs/Card.astro";
 import type { DocsEntry } from "@/types";
 import { render } from "astro:content";
 import TechBadge from "@components/common/TechBadge.astro";
-import { FaRegCalendarAlt, FaRegUserCircle, FaArrowLeft, FaMousePointer, FaTimes, FaCheck } from "react-icons/fa";
+import {
+  FaRegCalendarAlt,
+  FaRegUserCircle,
+  FaArrowLeft,
+  FaMousePointer,
+  FaTimes,
+  FaCheck,
+} from "react-icons/fa";
 import { upperHumanize, slugify } from "@lib/textConverter";
 
 interface Props {
@@ -15,7 +22,21 @@ interface Props {
 const { collectionIndex, entries } = Astro.props;
 
 const { Content } = await render(collectionIndex);
-const { title, description, date, author, technologies, url, urlActive, categories, tags } = collectionIndex.data;
+const {
+  title,
+  description,
+  date,
+  author,
+  technologies,
+  url,
+  urlActive,
+  categories,
+  tags,
+} = collectionIndex.data;
+
+// ✅ Vérifier si on est dans une sous-collection
+const currentPath = Astro.url.pathname;
+const isInSubCollection = currentPath !== "/docs/" && currentPath !== "/docs";
 ---
 
 <BaseLayout
@@ -23,73 +44,93 @@ const { title, description, date, author, technologies, url, urlActive, categori
   image={collectionIndex.data.image?.src}
   description={description}
 >
-  
   <!-- Section d'informations du dossier -->
   <div class="container md:col-9">
-
     <div class="glass p-6 rounded-lg mb-8">
-
-
       <!-- title -->
       <h1 class="my-5 text-center" set:text={upperHumanize(title)} />
-      
+
       <!-- Description -->
-      {description && (
-        <p class="text-sm mb-4 text-center">{description}</p>
-      )}
-      
+      {description && <p class="text-sm mb-4 text-center">{description}</p>}
 
-  <!-- Technologies -->
-  {technologies && technologies.length > 0 && (
-    <div>
-      <div class="flex flex-wrap gap-6 justify-center">
-        {technologies.map((tech, index) => (
-          <TechBadge tech={tech}/>
-        ))}
-      </div>
-    </div>
-  )}
+      <!-- Technologies -->
+      {
+        technologies && technologies.length > 0 && (
+          <div>
+            <div class="flex flex-wrap gap-6 justify-center">
+              {technologies.map((tech, index) => (
+                <TechBadge tech={tech} />
+              ))}
+            </div>
+          </div>
+        )
+      }
 
-      <!--Collaborator  -->
+      <!--Collaborator(s)  -->
       <div class="flex flex-wrap gap-4 mt-5 opacity-80">
-        {author && (
-          <a href={`/collaborateurs/${slugify(author.id)}`} class="hover:opacity-100">
-            <FaRegUserCircle className="-mt-1 inline-block mr-1" />
-            {upperHumanize(author.id)}
-          </a>
-        )}
+        {
+          author && author.length > 0 && (
+            <span class="inline-block">
+              {author.map((a, index) => (
+                <>
+                  <a
+                    href={
+                      a.id === "mathieu-escabias"
+                        ? "/"
+                        : `/collaborateurs/${slugify(a.id)}`
+                    }
+                    class="hover:opacity-100"
+                  >
+                    <FaRegUserCircle className={"-mt-1 inline-block mr-1"} />
+                    {upperHumanize(a.id)}
+                  </a>
+                  {index < author.length - 1 && <span>, </span>}
+                </>
+              ))}
+            </span>
+          )
+        }
         <!-- Date -->
-        {date && (
-          <span>
-            <FaRegCalendarAlt className="-mt-1 inline-block mr-1" />
-            Réalisé le : {new Date(date).toLocaleDateString('fr-FR', { 
-              day: '2-digit', 
-              month: 'long', 
-              year: 'numeric' 
-            })}
-          </span>
-        )}
-      <!-- Url -->
-  {url && (
-    <>
-      {urlActive ? (
-        <a href={url} target="_blank" rel="noopener noreferrer" class="hover:opacity-100 flex items-center gap-1">
-          <FaMousePointer className="-mt-1 inline-block" />
-          <FaCheck className="text-green-500" />
-          {url.replace(/^https?:\/\//, '')}
-        </a>
-      ) : (
-        <span class="opacity-50 flex items-center gap-1 cursor-not-allowed">
-          <FaMousePointer className="-mt-1 inline-block" />
-          <FaTimes className="text-red-500" />
-          {url.replace(/^https?:\/\//, '')} (site plus disponible)
-        </span>
-      )}
-    </>
-  )}
-
+        {
+          date && (
+            <span>
+              <FaRegCalendarAlt className="-mt-1 inline-block mr-1" />
+              Réalisé le :{" "}
+              {new Date(date).toLocaleDateString("fr-FR", {
+                day: "2-digit",
+                month: "long",
+                year: "numeric",
+              })}
+            </span>
+          )
+        }
+        <!-- Url -->
+        {
+          url && (
+            <>
+              {urlActive ? (
+                <a
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="hover:opacity-100 flex items-center gap-1"
+                >
+                  <FaMousePointer className="-mt-1 inline-block" />
+                  <FaCheck className="text-green-500" />
+                  {url.replace(/^https?:\/\//, "")}
+                </a>
+              ) : (
+                <span class="opacity-50 flex items-center gap-1 cursor-not-allowed">
+                  <FaMousePointer className="-mt-1 inline-block" />
+                  <FaTimes className="text-red-500" />
+                  {url.replace(/^https?:\/\//, "")} (site plus disponible)
+                </span>
+              )}
+            </>
+          )
+        }
       </div>
-      
+
       <!-- Contenu markdown de l'index.md -->
       <div class="content">
         <Content />
@@ -97,20 +138,21 @@ const { title, description, date, author, technologies, url, urlActive, categori
     </div>
   </div>
 
-
-
-
   <!-- Section des cartes de fichiers -->
-  <section class=" p-0">
-    <!-- fleche retour -->
+  <section class="p-0">
+    <!-- fleche retour disponible si on est dans une sous-collection -->
+    {
+      isInSubCollection && (
         <div class="container">
-  <a 
-    href="/docs/" 
-    class="inline-flex items-center gap-2 glass px-4 py-2 rounded-lg hover:scale-105 transition-transform duration-200"
-  >
-    <FaArrowLeft className="text-sm" />
-  </a>
-  </div>
+          <a
+            href="/docs/"
+            class="inline-flex items-center gap-2 glass px-4 py-2 rounded-lg hover:scale-105 transition-transform duration-200"
+          >
+            <FaArrowLeft className="text-sm" />
+          </a>
+        </div>
+      )
+    }
     <div class="container">
       <div class="row">
         {
@@ -123,5 +165,4 @@ const { title, description, date, author, technologies, url, urlActive, categori
       </div>
     </div>
   </section>
-  
 </BaseLayout>

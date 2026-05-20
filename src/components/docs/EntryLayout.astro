@@ -5,6 +5,7 @@ import DocBrowser from "@components/docs/Browser.astro";
 import TableOfContents from "@components/common/TableOfContents.astro";
 import { render, getCollection } from "astro:content";
 import EntryHeader from "@components/common/EntryHeader.astro";
+import { FaArrowLeft } from "react-icons/fa";
 
 interface Props {
   entry: DocsEntry;
@@ -71,15 +72,27 @@ if (actuallyHideNav && actuallyHideToc) {
         <section class="">
           <EntryHeader entry={entry} showImage showPubDate showAuthor />
         </section>
+
+
+  <!-- fleche retour -->
+    <div class="flex container pb-4">
+      <a
+        href="/docs/"
+        class="inline-flex items-center gap-2 glass px-4 py-2 rounded-lg hover:scale-105 transition-transform duration-200"
+      >
+        <FaArrowLeft className="text-sm" />
+      </a>
+    </div>
+
         <section class="content mb-4 glass px-4 rounded-lg">
           <Content />
         </section>
       </article>
     </div>
-
     <div class=`max-h-static_sidemenu sticky top-[5rem] ml-4 ${tocClass}`>
       <TableOfContents headings={headings} tocDepth={tocDepth} />
     </div>
+
 
   </section>
 </BaseLayout>

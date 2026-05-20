@@ -4,7 +4,7 @@ description: Site vitrine conçu pour une association dédiée à la préservati
 image: "@assets/docs/projets/logo-silverstone.png"
 imageAlt: Logo de CPA
 date: 2021-03-01
-author: mathieu-escabias, vincent-hogg
+author: [mathieu-escabias, vincent-hogg]
 technologies: [
     "prestashop",
     "php",

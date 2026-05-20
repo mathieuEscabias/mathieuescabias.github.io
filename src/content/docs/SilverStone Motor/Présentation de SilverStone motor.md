@@ -3,7 +3,7 @@ title: Présentation de Silverstone Motor
 image: "@assets/docs/projets/logo-silverstone.png"
 imageAlt: "Logo Silverstone"
 pubDate: 2021-03-02
-author: mathieu-escabias, vincent-hogg
+author: [mathieu-escabias, vincent-hogg]
 tags: [E-commerce, moto]
 ---
 

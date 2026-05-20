@@ -61,7 +61,7 @@ const docs = defineCollection({
   schema: ({ image }) =>
     searchable.extend({
       date: z.date().optional(),
-      author: reference("collaborateurs").optional(),
+      author: z.array(reference("collaborateurs")).optional(),
       pubDate: z.date().optional(),
       modDate: z.date().optional(),
       image: image().optional(),

@@ -73,13 +73,13 @@ const { image, imageDark, imageAlt, title, content } = entry.data;
 
   <!-- Photo -->
   <img
-    src="home/mathieu-escabias.jpg"
+    src="/home/mathieu-escabias.jpg"
     class="mx-0 w-44 sm:w-56 md:w-64 flex-none overflow-hidden rounded-xl bg-zinc-100 sm:rounded-2xl dark:bg-zinc-800 rotate-3"
     alt="mathieu escabias, développeur web"
   />
 
   <!-- Infos identité -->
-  <ul class="space-y-2 text-sm md:text-base text-left">
+  <ul class="space-y-2 px-4 py-3 text-sm md:text-base text-left glass-t hover:bg-opacity-20 hover:backdrop-blur-none rounded-md font-bold intersect:animate-fade opacity-0">
     <li class="flex items-center gap-3">
       <span class="text-txt-mycolor dark:text-txt-mycolor font-semibold w-20 shrink-0">Nom</span>
       <span class="text-gray-700 dark:text-gray-300">Escabias</span>
@@ -91,6 +91,10 @@ const { image, imageDark, imageAlt, title, content } = entry.data;
     <li class="flex items-center gap-3">
       <span class="text-txt-mycolor dark:text-txt-mycolor font-semibold w-20 shrink-0">Âge</span>
       <span class="text-gray-700 dark:text-gray-300">36 ans</span>
+    </li>
+        <li class="flex items-center gap-3">
+      <span class="text-txt-mycolor dark:text-txt-mycolor font-semibold w-20 shrink-0">expérience</span>
+      <span class="text-gray-700 dark:text-gray-300">7 ans</span
     </li>
     <li class="flex items-center gap-3">
       <span class="text-txt-mycolor dark:text-txt-mycolor font-semibold w-20 shrink-0">Ville</span>
@@ -104,7 +108,7 @@ const { image, imageDark, imageAlt, title, content } = entry.data;
           <p class="mb-5 text-base md:text-xl">
             Vous êtes à la recherche d'un développeur doté d'une excellente communication ? Qui vous offre une réalisation avec le
             <img
-              src="home/heart.gif"
+              src="/home/heart.gif"
               alt="coeur qui bat"
               class="inline-block w-6 h-6 md:w-8 md:h-8 mx-1 align-middle"
             />
@@ -906,7 +910,7 @@ const { image, imageDark, imageAlt, title, content } = entry.data;
     </div>
   </div>
 
-
+<!-- @ts-ignore -->
 <script>import "/src/lib/progressBar.ts";</script>
 
 <script>

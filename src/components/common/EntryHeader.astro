@@ -94,11 +94,31 @@ tags?.sort((a: string, b: string) => a.localeCompare(b));
         <h1 set:html={markdownify(title)} class="mb-4" />
         <ul>
           {author && showAuthor && (
-            <li class="mr-1 inline-block"> projet réalisé avec :
-              <a href={`/collaborateurs/${slugify(author.id)}`}>
-                <FaRegUserCircle className={"-mt-1 inline-block"} />
-                {upperHumanize(author.id)}
-              </a>
+            <li class="mr-1 inline-block">
+              projet réalisé avec :
+              {Array.isArray(author) ? (
+                author.map((a, index) => (
+                  <>
+                    <a
+                      href={
+                        a.id === "mathieu-escabias"
+                          ? "/"
+                          : `/collaborateurs/${slugify(a.id)}`
+                      }
+                      class="hover:opacity-100"
+                    >
+                      <FaRegUserCircle className={"-mt-1 inline-block"} />
+                      {upperHumanize(a.id)}
+                    </a>
+                    {index < author.length - 1 && <span>, </span>}
+                  </>
+                ))
+              ) : (
+                <a href={`/collaborateurs/${slugify(author.id)}`} class="ml-1">
+                  <FaRegUserCircle className={"-mt-1 inline-block"} />
+                  {upperHumanize(author.id)}
+                </a>
+              )}
             </li>
           )}
           {date && showDate && (
@@ -111,7 +131,11 @@ tags?.sort((a: string, b: string) => a.localeCompare(b));
             <li class="mr-1 inline-block">
               <FaRegCalendarAlt className={"ml-2 -mt-1 inline-block"} />
               Publié le
-                  {new Date(pubDate).toLocaleDateString('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' })}
+              {new Date(pubDate).toLocaleDateString("fr-FR", {
+                day: "2-digit",
+                month: "long",
+                year: "numeric",
+              })}
             </li>
           )}
           {modDate && showModDate && (

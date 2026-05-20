@@ -1,9 +1,9 @@
 ---
 title: présentaiton de On en a Gros
-image: "@assets/docs/projets/img-on-en.webp"
+image: "@assets/docs/projets/on-en-a-gros.webp"
 imageAlt: "cerle de discution on en a gros"
 pubDate: 2023-10-16
-author: mathieu-escabias
+author: [mathieu-escabias]
 tags: [association, speedrun]
 ---
 
