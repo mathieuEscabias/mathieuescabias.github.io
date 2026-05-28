@@ -14,4 +14,5 @@ technologies: [
 url: onena-gros.fr
 urlActive: false
 categories: [site-vitrine]
+tags: [association, speedrun]
 ---

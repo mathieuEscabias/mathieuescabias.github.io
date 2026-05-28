@@ -1,9 +1,8 @@
 ---
 import BaseLayout from "@components/base/BaseLayout.astro";
 import type { DocsEntry } from "@/types";
-import DocBrowser from "@components/docs/Browser.astro";
 import TableOfContents from "@components/common/TableOfContents.astro";
-import { render, getCollection } from "astro:content";
+import { render } from "astro:content";
 import EntryHeader from "@components/common/EntryHeader.astro";
 import { FaArrowLeft } from "react-icons/fa";
 
@@ -13,86 +12,59 @@ interface Props {
 
 const { entry } = Astro.props;
 const { Content, headings } = await render(entry);
-const { title, description, hideNav, hideToc, image } = entry.data;
+const { title, description, hideToc, image } = entry.data;
 
-// ---- Fetch categories & tags ----
-const allDocs = await getCollection("docs");
-
-const allCategories = allDocs.flatMap((doc) => doc.data.categories ?? []);
-const categories = [...new Set(allCategories)];
-
-const tags = [...new Set(
-  allDocs.flatMap((doc) => doc.data.tags ?? [])
-)];
-// ---- Fin fetch ----
-
-const globalHideNav = false;
 const globalHideToc = false;
 const tocDepth = 3;
 
-const actuallyHideNav = hideNav || globalHideNav;
-const actuallyHideToc = hideToc || globalHideToc || headings.filter((heading) => heading.depth <= tocDepth).length === 0;
+const actuallyHideToc =
+  hideToc ||
+  globalHideToc ||
+  headings.filter((h) => h.depth <= tocDepth).length === 0;
 
-let articleClass = "";
-let navClass = "";
-let tocClass = "";
+const articleClass = actuallyHideToc
+  ? "w-full"
+  : "w-full lg:w-4/5";
 
-if (actuallyHideNav && actuallyHideToc) {
-  navClass = "hidden";
-  articleClass = "w-full";
-  tocClass = "hidden";
-} else if (!actuallyHideNav && actuallyHideToc) {
-  navClass = "hidden md:flex md:w-1/4 lg:w-1/5";
-  articleClass = "w-full md:w-3/4 lg:w-4/5";
-  tocClass = "hidden";
-} else if (actuallyHideNav && !actuallyHideToc) {
-  navClass = "hidden";
-  articleClass = "w-full md:w-3/4 lg:w-4/5";
-  tocClass = "hidden md:flex md:w-1/4 lg:w-1/5";
-} else {
-  navClass = "hidden md:flex md:w-1/4 lg:w-1/5";
-  articleClass = "w-full md:w-3/4 lg:w-3/5";
-  tocClass = "hidden lg:flex lg:w-1/5";
-}
+const tocClass = actuallyHideToc
+  ? "hidden"
+  : "hidden lg:flex lg:w-1/5";
 ---
 
 <BaseLayout title={title} image={image?.src} description={description}>
   <section class="flex container p-4">
 
-    <div class=`max-h-static_sidemenu sticky top-[5rem] mr-4 ${navClass}`>
-      <DocBrowser
-        tags={tags}
-        categories={categories}
-        allCategories={allCategories}
-      />
-    </div>
+    <!-- Contenu principal -->
+    <div class={`w-full ${articleClass}`}>
+      <article>
 
-    <div class=`w-full ${articleClass}`>
-      <article class="">
-        <section class="">
+        <!-- Header (image, date, auteur) -->
+        <section>
           <EntryHeader entry={entry} showImage showPubDate showAuthor />
         </section>
 
+        <!-- Flèche retour -->
+        <div class="flex container pb-4">
+          <a
+            href="/docs/"
+            class="inline-flex items-center gap-2 glass px-4 py-2 rounded-lg hover:scale-105 transition-transform duration-200"
+          >
+            <FaArrowLeft className="text-sm" />
+          </a>
+        </div>
 
-  <!-- fleche retour -->
-    <div class="flex container pb-4">
-      <a
-        href="/docs/"
-        class="inline-flex items-center gap-2 glass px-4 py-2 rounded-lg hover:scale-105 transition-transform duration-200"
-      >
-        <FaArrowLeft className="text-sm" />
-      </a>
-    </div>
-
+        <!-- Contenu markdown -->
         <section class="content mb-4 glass px-4 rounded-lg">
           <Content />
         </section>
+
       </article>
     </div>
-    <div class=`max-h-static_sidemenu sticky top-[5rem] ml-4 ${tocClass}`>
+
+    <!-- Table des matières (droite, desktop uniquement) -->
+    <div class={`max-h-static_sidemenu sticky top-[5rem] ml-4 ${tocClass}`}>
       <TableOfContents headings={headings} tocDepth={tocDepth} />
     </div>
-
 
   </section>
 </BaseLayout>

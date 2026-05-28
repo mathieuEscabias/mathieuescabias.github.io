@@ -14,4 +14,5 @@ technologies: [
 url: http://copran-animale.fr/
 urlActive: false
 categories: [site-vitrine]
+tags: [animaux, association]
 ---

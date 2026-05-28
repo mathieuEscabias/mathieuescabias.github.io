@@ -1,5 +1,5 @@
 ---
-import CategoriesLayout from "@components/docs/CategoriesLayout.astro";
+import TaxonomyLayout from "@components/docs/TaxonomyLayout.astro";
 import { getTaxa, getTaxaMultiset } from "@lib/taxonomyParser";
 
 const collection = "docs";
@@ -8,4 +8,4 @@ const taxa = await getTaxa(collection, taxonomy);
 const allTaxa = await getTaxaMultiset(collection, taxonomy);
 ---
 
-<CategoriesLayout taxonomy={taxonomy} taxa={taxa} allTaxa={allTaxa} />
+<TaxonomyLayout taxonomy={taxonomy} taxa={taxa} allTaxa={allTaxa} />

@@ -3,7 +3,7 @@ import type { DocsEntry } from "@/types";
 import { getEntries } from "@lib/contentParser";
 import { getTaxa } from "@lib/taxonomyParser";
 import taxonomyFilter from "@lib/taxonomyFilter";
-import CategoryLayout from "@components/docs/CategoryLayout.astro";
+import TaxonomyLayout from "@components/docs/TaxonomyLayout.astro";
 
 export async function getStaticPaths() {
   const taxa = await getTaxa("docs", "categories");
@@ -21,4 +21,4 @@ const entries = await getEntries("docs") as DocsEntry[];
 const filteredEntries: DocsEntry[] = taxonomyFilter(entries, "categories", taxon!);
 ---
 
-<CategoryLayout taxon={taxon} entries={filteredEntries} />
+<TaxonomyLayout taxonomy="categories" taxa={[taxon]} allTaxa={[taxon]} entries={filteredEntries} activeTaxon={taxon} />

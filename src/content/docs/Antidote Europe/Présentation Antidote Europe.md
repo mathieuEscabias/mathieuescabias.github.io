@@ -4,7 +4,6 @@ image: "@assets/docs/projets/antidote-rats.jpg"
 imageAlt: logo antidote Europe
 pubDate: 2022-02-15
 author: [mathieu-escabias]
-tags: [animaux, association, blog]
 ---
 
 ### Antidote Europe — Webmaster d'un site vieux de vingt ans

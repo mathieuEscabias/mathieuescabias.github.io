@@ -30,13 +30,18 @@ const {
   technologies,
   url,
   urlActive,
-  categories,
-  tags,
 } = collectionIndex.data;
 
-// ✅ Vérifier si on est dans une sous-collection
+//  Vérifier si on est dans une sous-collection
 const currentPath = Astro.url.pathname;
 const isInSubCollection = currentPath !== "/docs/" && currentPath !== "/docs";
+const showFilters = !isInSubCollection;
+
+//  Extraire toutes les catégories et tags uniques depuis les entries
+import { getCollection } from "astro:content";
+const allDocs = await getCollection("docs");
+const allCategories = [...new Set(allDocs.flatMap(e => e.data.categories ?? []))];
+const allTags = [...new Set(allDocs.flatMap(e => e.data.tags ?? []))];
 ---
 
 <BaseLayout
@@ -44,125 +49,297 @@ const isInSubCollection = currentPath !== "/docs/" && currentPath !== "/docs";
   image={collectionIndex.data.image?.src}
   description={description}
 >
+
+
+
   <!-- Section d'informations du dossier -->
   <div class="container md:col-9">
-    <div class="glass p-6 rounded-lg mb-8">
-      <!-- title -->
+    <div class="glass p-6 rounded-lg">
       <h1 class="my-5 text-center" set:text={upperHumanize(title)} />
-
-      <!-- Description -->
       {description && <p class="text-sm mb-4 text-center">{description}</p>}
-
-      <!-- Technologies -->
-      {
-        technologies && technologies.length > 0 && (
-          <div>
-            <div class="flex flex-wrap gap-6 justify-center">
-              {technologies.map((tech, index) => (
-                <TechBadge tech={tech} />
-              ))}
-            </div>
-          </div>
-        )
-      }
-
-      <!--Collaborator(s)  -->
+      {technologies && technologies.length > 0 && (
+        <div class="flex flex-wrap gap-6 justify-center">
+          {technologies.map((tech) => <TechBadge tech={tech} />)}
+        </div>
+      )}
       <div class="flex flex-wrap gap-4 mt-5 opacity-80">
-        {
-          author && author.length > 0 && (
-            <span class="inline-block">
-              {author.map((a, index) => (
-                <>
-                  <a
-                    href={
-                      a.id === "mathieu-escabias"
-                        ? "/"
-                        : `/collaborateurs/${slugify(a.id)}`
-                    }
-                    class="hover:opacity-100"
-                  >
-                    <FaRegUserCircle className={"-mt-1 inline-block mr-1"} />
-                    {upperHumanize(a.id)}
-                  </a>
-                  {index < author.length - 1 && <span>, </span>}
-                </>
-              ))}
-            </span>
-          )
-        }
-        <!-- Date -->
-        {
-          date && (
-            <span>
-              <FaRegCalendarAlt className="-mt-1 inline-block mr-1" />
-              Réalisé le :{" "}
-              {new Date(date).toLocaleDateString("fr-FR", {
-                day: "2-digit",
-                month: "long",
-                year: "numeric",
-              })}
-            </span>
-          )
-        }
-        <!-- Url -->
-        {
-          url && (
-            <>
-              {urlActive ? (
-                <a
-                  href={url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="hover:opacity-100 flex items-center gap-1"
-                >
-                  <FaMousePointer className="-mt-1 inline-block" />
-                  <FaCheck className="text-green-500" />
-                  {url.replace(/^https?:\/\//, "")}
+        {author && author.length > 0 && (
+          <span class="inline-block">
+            {author.map((a, index) => (
+              <>
+                <a href={a.id === "mathieu-escabias" ? "/" : `/collaborateurs/${slugify(a.id)}`} class="hover:opacity-100">
+                  <FaRegUserCircle className="-mt-1 inline-block mr-1" />
+                  {upperHumanize(a.id)}
                 </a>
-              ) : (
-                <span class="opacity-50 flex items-center gap-1 cursor-not-allowed">
-                  <FaMousePointer className="-mt-1 inline-block" />
-                  <FaTimes className="text-red-500" />
-                  {url.replace(/^https?:\/\//, "")} (site plus disponible)
-                </span>
-              )}
-            </>
-          )
-        }
+                {index < author.length - 1 && <span>, </span>}
+              </>
+            ))}
+          </span>
+        )}
+        {date && (
+          <span>
+            <FaRegCalendarAlt className="-mt-1 inline-block mr-1" />
+            Réalisé le :{" "}
+            {new Date(date).toLocaleDateString("fr-FR", { day: "2-digit", month: "long", year: "numeric" })}
+          </span>
+        )}
+        {url && (
+          <>
+            {urlActive ? (
+              <a href={url} target="_blank" rel="noopener noreferrer" class="hover:opacity-100 flex items-center gap-1">
+                <FaMousePointer className="-mt-1 inline-block" />
+                <FaCheck className="text-green-500" />
+                {url.replace(/^https?:\/\//, "")}
+              </a>
+            ) : (
+              <span class="opacity-50 flex items-center gap-1 cursor-not-allowed">
+                <FaMousePointer className="-mt-1 inline-block" />
+                <FaTimes className="text-red-500" />
+                {url.replace(/^https?:\/\//, "")} (site plus disponible)
+              </span>
+            )}
+          </>
+        )}
       </div>
-
-      <!-- Contenu markdown de l'index.md -->
-      <div class="content">
-        <Content />
-      </div>
+      <div class="content"><Content /></div>
     </div>
   </div>
 
-  <!-- Section des cartes de fichiers -->
-  <section class="p-0">
-    <!-- fleche retour disponible si on est dans une sous-collection -->
-    {
-      isInSubCollection && (
-        <div class="container">
-          <a
-            href="/docs/"
-            class="inline-flex items-center gap-2 glass px-4 py-2 rounded-lg hover:scale-105 transition-transform duration-200"
-          >
-            <FaArrowLeft className="text-sm" />
-          </a>
-        </div>
-      )
-    }
-    <div class="container">
-      <div class="row">
-        {
-          entries.map((entry) => (
-            <div class="md:col-6 lg:col-4 h-min p-2">
-              <DocCard entry={entry} />
+
+  <!-- FILTRES DYNAMIQUES -->
+   {showFilters && (
+  <div class="container my-3 md:col-9">
+    <div class="container p-2 glass rounded">
+                <h3 class="mb-3 p-1 text-center text-lg">Filtre</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 px-5">
+
+        <!-- Accordion Catégories -->
+        <div data-accordion="open">
+          <h3>
+            <button
+              type="button"
+              class="flex items-center justify-between w-full px-5 py-2 font-semibold
+              rounded-t-xl glass-t hover:bg-opacity-20 hover:backdrop-blur-none rounded-md font-bold intersect:animate-fade opacity-0 
+              bg-gray-200 dark:bg-gray-900 border border-t-0 border-gray-200 dark:border-gray-700"
+              data-accordion-target="#accordion-cat-body"
+              aria-expanded="false"
+              aria-controls="accordion-cat-body"
+            >
+              <span class="flex items-center gap-2 text-lg">
+                <svg class="w-5 h-5 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16"/>
+                </svg>
+                Catégories
+              </span>
+              <svg data-accordion-icon class="w-5 h-5 rotate-180 shrink-0 transition-transform duration-200"
+                aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+              </svg>
+            </button>
+          </h3>
+          <div id="accordion-cat-body" class="hidden">
+            <div class="p-4 rounded-b-xl bg-gray-200 dark:bg-gray-900 border border-t-0 border-gray-200 dark:border-gray-700">
+              <!-- Bouton reset -->
+              <button
+                class="filter-reset mb-3 text-xs text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 underline"
+                data-filter-type="all"
+              >
+                Tout afficher
+              </button>
+              <div class="flex flex-wrap gap-2">
+                {allCategories.map((cat) => (
+                  <button
+                    class="filter-btn inline-flex items-center px-3 py-1 rounded-full text-sm font-medium
+                           bg-violet-500/20 hover:bg-violet-500/40
+                           text-violet-800 dark:text-violet-300
+                           border border-violet-400/30
+                           transition-all duration-200"
+                    data-filter-type="category"
+                    data-filter-value={cat}
+                  >
+                    {upperHumanize(cat)}
+                  </button>
+                ))}
+                {allCategories.length === 0 && (
+                  <p class="text-sm text-gray-400">Aucune catégorie.</p>
+                )}
+              </div>
             </div>
-          ))
-        }
+          </div>
+        </div>
+
+        <!-- Accordion Tags -->
+        <div data-accordion="open">
+          <h3>
+            <button
+              type="button"
+              class="flex items-center justify-between w-full px-5 py-2 font-semibold
+              rounded-t-xl glass-t hover:bg-opacity-20 hover:backdrop-blur-none rounded-md font-bold intersect:animate-fade opacity-0
+              bg-gray-200 dark:bg-gray-900 border border-t-0 border-gray-200 dark:border-gray-700"
+              data-accordion-target="#accordion-tags-body"
+              aria-expanded="false"
+              aria-controls="accordion-tags-body"
+            >
+              <span class="flex items-center gap-2 text-lg">
+                <svg class="w-5 h-5 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M15.5 8.5h.01M3 7.5v4.586a1 1 0 0 0 .293.707l8.914 8.914a1 1 0 0 0 1.414 0l4.586-4.586a1 1 0 0 0 0-1.414L9.293 6.793A1 1 0 0 0 8.586 6.5H4a1 1 0 0 0-.5.086V7.5Z"/>
+                </svg>
+                Tags
+              </span>
+              <svg data-accordion-icon class="w-5 h-5 rotate-180 shrink-0 transition-transform duration-200"
+                aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+              </svg>
+            </button>
+          </h3>
+          <div id="accordion-tags-body" class="hidden">
+            <div class="p-4 rounded-b-xl bg-gray-200 dark:bg-gray-900 border border-t-0 border-gray-200 dark:border-gray-700">
+              <div class="flex flex-wrap gap-2">
+                {allTags.map((tag) => (
+                  <button
+                    class="filter-btn inline-flex items-center px-3 py-1 rounded-full text-sm font-medium
+                           bg-fuchsia-500/20 hover:bg-fuchsia-500/40
+                           text-fuchsia-800 dark:text-fuchsia-300
+                           border border-fuchsia-400/30
+                           transition-all duration-200"
+                    data-filter-type="tag"
+                    data-filter-value={tag}
+                  >
+                    # {tag}
+                  </button>
+                ))}
+                {allTags.length === 0 && (
+                  <p class="text-sm text-gray-400">Aucun tag.</p>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
+
+      <!-- Compteur de résultats -->
+      <p id="filter-count" class="text-center text-sm mt-4 hidden">
+        <span id="filter-count-num"></span> résultat(s)
+      </p>
+    </div>
+  </div>
+
+)}
+
+  <!-- Section des cartes -->
+  <section class="p-0">
+
+<!-- Fleche retour -->
+    {isInSubCollection && (
+      <div class="container md:col-9 py-2">
+        <a href="/docs/" class="inline-flex items-center gap-2 glass px-4 py-2 rounded-lg hover:scale-105 transition-transform duration-200">
+          <FaArrowLeft className="text-sm" />
+        </a>
+      </div>
+    )}
+    <div class="container">
+      <div class="row" id="cards-container">
+        {entries.map((entry) => (
+          <div
+            class="md:col-6 lg:col-4 h-min p-2 doc-card-wrapper"
+            data-categories={JSON.stringify(entry.data.categories ?? [])}
+            data-tags={JSON.stringify(entry.data.tags ?? [])}
+          >
+            <DocCard entry={entry} />
+          </div>
+        ))}
+      </div>
+      <!-- Message aucun résultat -->
+      <p id="no-results" class="hidden text-center text-gray-400 dark:text-gray-500 py-10">
+        Aucun projet ne correspond à ce filtre.
+      </p>
     </div>
   </section>
+
 </BaseLayout>
+
+
+
+<script>
+  function initFilters() {
+    const filterBtns = document.querySelectorAll<HTMLButtonElement>(".filter-btn");
+    const resetBtns = document.querySelectorAll<HTMLButtonElement>(".filter-reset");
+    const cards = document.querySelectorAll<HTMLElement>(".doc-card-wrapper");
+    const noResults = document.getElementById("no-results");
+    const countEl = document.getElementById("filter-count");
+    const countNum = document.getElementById("filter-count-num");
+
+    if (!filterBtns.length) return;
+
+    const activeFilters: Record<string, Set<string>> = {
+      category: new Set(),
+      tag: new Set(),
+    };
+
+    function updateCards() {
+      let visible = 0;
+      cards.forEach((card) => {
+        const cardCats: string[] = JSON.parse(card.dataset.categories || "[]");
+        const cardTags: string[] = JSON.parse(card.dataset.tags || "[]");
+        const catMatch = activeFilters.category.size === 0
+          || [...activeFilters.category].some(c => cardCats.includes(c));
+        const tagMatch = activeFilters.tag.size === 0
+          || [...activeFilters.tag].some(t => cardTags.includes(t));
+        const show = catMatch && tagMatch;
+        card.style.display = show ? "" : "none";
+        if (show) visible++;
+      });
+      const hasFilter = activeFilters.category.size > 0 || activeFilters.tag.size > 0;
+      if (countEl && countNum) {
+        countEl.classList.toggle("hidden", !hasFilter);
+        countNum.textContent = String(visible);
+      }
+      if (noResults) noResults.classList.toggle("hidden", visible > 0);
+    }
+
+    filterBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const type = btn.dataset.filterType as string;
+        const value = btn.dataset.filterValue as string;
+        if (activeFilters[type].has(value)) {
+          activeFilters[type].delete(value);
+          btn.classList.remove("ring-2", "ring-offset-1");
+        } else {
+          activeFilters[type].add(value);
+          btn.classList.add("ring-2", "ring-offset-1");
+        }
+        updateCards();
+      });
+    });
+
+resetBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    activeFilters.category.clear();
+    activeFilters.tag.clear();
+    filterBtns.forEach(b => {
+      b.classList.remove("ring-2", "ring-offset-1", "bg-white/20", "dark:bg-white/10");
+      // Restaure la couleur selon le type
+      if (b.dataset.filterType === "category") {
+        b.classList.add("bg-violet-500/60", "dark:bg-violet-500/40");
+      } else {
+        b.classList.add("bg-fuchsia-500/60", "dark:bg-fuchsia-500/40");
+      }
+    });
+    updateCards();
+  });
+});
+  }
+
+  // ✅ Fix Flowbite + filtres après navigation View Transitions
+  function initAll() {
+    import("flowbite").then((flowbite) => {
+      flowbite.initFlowbite();
+    });
+    initFilters();
+  }
+
+  initAll();
+  document.addEventListener("astro:after-swap", initAll);
+</script>

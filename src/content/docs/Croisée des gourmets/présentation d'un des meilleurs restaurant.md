@@ -4,7 +4,6 @@ image: "@assets/docs/projets/logo-croise.png"
 imageAlt: "Logo de la croisée des gourmets"
 pubDate: 2024-02-24
 author: [mathieu-escabias, lory-mattolini]
-tags: [restaurant, design]
 ---
 
 ### La Croisée des Gourmets — Quand la cuisine mérite un écrin à sa hauteur

@@ -14,4 +14,5 @@ technologies: [
 url: https://www.croise-des-gourmets.fr/
 urlActive: true
 categories: [site-vitrine]
+tags: [restaurant, design]
 ---

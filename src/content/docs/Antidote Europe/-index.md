@@ -13,5 +13,6 @@ technologies: [
 ]
 url: https://antidote-europe.eu/
 urlActive: true
-categories: [blog]
+categories: [blog, site-vitrine]
+tags: [animaux, association]
 ---

@@ -4,7 +4,6 @@ image: "@assets/docs/projets/CPA.png"
 imageAlt: "Logo de CPA"
 pubDate: 2021-02-02
 author: [mathieu-escabias]
-tags: [animaux, association, blog]
 ---
 
 ### Collectif Animale — Premier projet web

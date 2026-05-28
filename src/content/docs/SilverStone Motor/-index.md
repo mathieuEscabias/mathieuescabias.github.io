@@ -15,4 +15,5 @@ technologies: [
 url: https://www.silverstonemotor.com/
 urlActive: true
 categories: [E-commerce]
+tags: [moto]
 ---

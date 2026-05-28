@@ -1,0 +1,146 @@
+---
+import BaseLayout from "@components/base/BaseLayout.astro";
+import PageHeader from "@components/common/PageHeader.astro";
+import DocCard from "@components/docs/Card.astro";
+import { upperHumanize } from "@lib/textConverter";
+import { FaArrowLeft } from "react-icons/fa";
+import type { DocsEntry } from "@/types";
+
+interface Props {
+  taxonomy: string;
+  taxa: string[];
+  allTaxa: string[];
+  entries?: DocsEntry[];
+  activeTaxon?: string;
+}
+
+const { taxonomy, taxa, allTaxa, entries = [], activeTaxon } = Astro.props;
+---
+
+<BaseLayout title={upperHumanize(taxonomy)}>
+  <PageHeader title={upperHumanize(taxonomy)} />
+
+  <!-- Bouton retour -->
+  <div class="container pb-2">
+    <a
+      href="/docs/"
+      class="inline-flex items-center gap-2 glass px-4 py-2 rounded-lg hover:scale-105 transition-transform duration-200"
+    >
+      <FaArrowLeft className="text-sm" />
+    </a>
+  </div>
+
+  <!-- FILTRES — liste des taxa -->
+  <div class="container my-3 md:col-9">
+    <div class="container p-2 glass rounded">
+      <h3 class="mb-3 p-1 text-center text-lg">
+        {upperHumanize(taxonomy)}
+      </h3>
+
+      <div class="px-5">
+        <div data-accordion="open">
+          <h3>
+            <button
+              type="button"
+              class="flex items-center justify-between w-full px-5 py-2 font-semibold
+                     rounded-t-xl glass-t hover:bg-opacity-20 hover:backdrop-blur-none
+                     rounded-md font-bold intersect:animate-fade opacity-0
+                     bg-gray-200 dark:bg-gray-900 border border-t-0 border-gray-200 dark:border-gray-700"
+              data-accordion-target="#accordion-taxa-body"
+              aria-expanded="true"
+              aria-controls="accordion-taxa-body"
+            >
+              <span class="flex items-center gap-2 text-lg">
+                {taxonomy === "categories" ? (
+                  <svg class="w-5 h-5 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16"/>
+                  </svg>
+                ) : (
+                  <svg class="w-5 h-5 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M15.5 8.5h.01M3 7.5v4.586a1 1 0 0 0 .293.707l8.914 8.914a1 1 0 0 0 1.414 0l4.586-4.586a1 1 0 0 0 0-1.414L9.293 6.793A1 1 0 0 0 8.586 6.5H4a1 1 0 0 0-.5.086V7.5Z"/>
+                  </svg>
+                )}
+                {upperHumanize(taxonomy)}
+              </span>
+              <svg data-accordion-icon class="w-5 h-5 rotate-180 shrink-0 transition-transform duration-200"
+                aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+              </svg>
+            </button>
+          </h3>
+
+          <div id="accordion-taxa-body" aria-labelledby="accordion-taxa-heading">
+            <div class="p-4 rounded-b-xl bg-gray-200 dark:bg-gray-900 border border-t-0 border-gray-200 dark:border-gray-700">
+              <div class="flex flex-wrap gap-2">
+                {taxa.map((taxon) => {
+                  const count = allTaxa.filter((c) => c === taxon).length;
+                  const isActive = taxon === activeTaxon;
+                  return (
+                    <a
+                      href={`/docs/${taxonomy}/${taxon}`}
+                      class={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium border transition-all duration-200
+                        ${isActive
+                          ? "bg-white/20 dark:bg-white/10 ring-2 ring-offset-1 border-violet-400/50 text-gray-900 dark:text-gray-100"
+                          : taxonomy === "categories"
+                            ? "bg-violet-500/60 hover:bg-violet-500/40 dark:bg-violet-500/40 text-gray-900 dark:text-gray-100 border-violet-400/50"
+                            : "bg-fuchsia-500/60 hover:bg-fuchsia-500/40 dark:bg-fuchsia-500/40 text-gray-900 dark:text-gray-100 border-fuchsia-400/50"
+                        }`}
+                    >
+                      {taxonomy === "tags" && <span class="mr-1">#</span>}
+                      {upperHumanize(taxon)}
+                      <span class="ml-1 text-xs opacity-70">({count})</span>
+                    </a>
+                  );
+                })}
+                {taxa.length === 0 && (
+                  <p class="text-sm text-gray-400">Aucun élément disponible.</p>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Compteur -->
+      {activeTaxon && (
+        <p class="text-center text-sm mt-4 text-gray-400 dark:text-gray-500">
+          {entries.length} résultat(s) pour
+          <span class="font-semibold text-gray-600 dark:text-gray-300">
+            {taxonomy === "tags" ? "#" : ""}{upperHumanize(activeTaxon)}
+          </span>
+        </p>
+      )}
+
+    </div>
+  </div>
+
+  <!-- Cards -->
+  <section class="p-0">
+    <div class="container">
+      <div class="row">
+        {entries.map((entry) => (
+          <div class="md:col-6 lg:col-4 h-min p-2">
+            <DocCard entry={entry} />
+          </div>
+        ))}
+      </div>
+      {entries.length === 0 && activeTaxon && (
+        <p class="text-center text-gray-400 dark:text-gray-500 py-10">
+          Aucun projet ne correspond à cette sélection.
+        </p>
+      )}
+    </div>
+  </section>
+
+</BaseLayout>
+
+<script>
+  function initAll() {
+    import("flowbite").then((flowbite) => {
+      flowbite.initFlowbite();
+    });
+  }
+  initAll();
+  document.addEventListener("astro:after-swap", initAll);
+</script>
