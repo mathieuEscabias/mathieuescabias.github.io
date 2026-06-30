@@ -26,7 +26,7 @@ Avant d'arriver sur Shopify, le site de Jean-François a traversé plusieurs CMS
 
 Le pire épisode reste celui d'un prestataire qui a empoché un beau billet, détruit une partie du site, et disparu — en laissant derrière lui des **URL pirates cachées dans le code**, injectées discrètement pour faire la promotion de sites illégaux. Jean-François ne s'en est rendu compte que bien après. Le genre de trahison qui marque et qui rend méfiant.
 
-Dans ce contexte, le développeur sorti de l'école 42 qui l'a suivi était, ironiquement, le moins pire de ses collaborateurs. Ses erreurs étaient techniques, pas malveillantes. Mais les dégâts étaient là quand même : face aux contraintes de Shopify — un écosystème **fermé, propriétaire, et tout sauf open source** où chaque fonctionnalité supplémentaire a un coût — il avait fait le choix risqué d'injecter du code directement dans le thème pour contourner les limitations. Puis il était parti au pire moment, sans transmission.
+Différentes interventions de plusieurs développeurs qui se sont succédé pour tenter de réparer les dégâts, ont eu pour résultat une accumulation d'injections de modifications directes du code dans le thème. Face aux contraintes de Shopify - un écosystème fermé, propriétaire et tout sauf open source, cette accumulation de modifications sans historique a produit confusions et ralentissements.
 
 Problème majeur : **Shopify ne dispose pas de système de versionning natif**. Impossible, à mon arrivée, de savoir ce qui avait été modifié, ajouté ou cassé. Pas de trace, pas d'historique, pas de filet de sécurité.
 
