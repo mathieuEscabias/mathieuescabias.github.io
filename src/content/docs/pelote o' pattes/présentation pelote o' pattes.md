@@ -72,7 +72,7 @@ Au-delà de l'hôtel pour chats, Charlène propose également des séances de na
 
 ### Charlène : le moteur humain du projet
 
-Charlène Ambrosie est une jeune maman qui a fait le choix audacieux de monter son entreprise en même temps qu'elle accueillait son bébé. Une situation qui demande une bonne dose de courage et d'organisation.
+Charlène Ambrosi est une jeune maman qui a fait le choix audacieux de monter son entreprise en même temps qu'elle accueillait son bébé. Une situation qui demande une bonne dose de courage et d'organisation.
 
 Le contact est passé naturellement entre nous, tant elle dégage une gentillesse sincère. C'est une véritable amoureuse des animaux, qui a choisi de se consacrer principalement aux chats tout en gardant cette dimension plus large à travers la naturothérapie.
 
