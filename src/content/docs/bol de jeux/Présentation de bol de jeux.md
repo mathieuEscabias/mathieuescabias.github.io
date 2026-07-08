@@ -1,6 +1,6 @@
 ---
 title: Présentation de Silverstone Motor
-image: "@assets/docs/projets/bol-de-jeux.jepg"
+image: "@assets/docs/projets/bol-de-jeux.jpeg"
 imageAlt: Logo de bol de jeux
 pubDate: 2025-05-19
 author: [mathieu-escabias]

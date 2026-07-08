@@ -1,7 +1,7 @@
 ---
 title: Bol de jeux
 description: Site e-commerce pour un magasin de jeux de société
-image: "@assets/docs/projets/bol-de-jeux.jepg"
+image: "@assets/docs/projets/bol-de-jeux.jpeg"
 imageAlt: Logo de bol de jeux
 date: 2025-05-19
 author: [mathieu-escabias]
