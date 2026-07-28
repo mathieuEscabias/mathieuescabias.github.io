@@ -57,7 +57,7 @@ Grâce à ce programme, le client a pu alimenter son catalogue de façon autonom
 
 Un gain de temps massif sur une tâche qui aurait pu rester un enfer logistique indéfiniment.
 
-![Démonstration du maitre pokemon](@assets/docs/projets/csv-pokemon.gif "Démonstration du maitre pokemon")
+![Démonstration du maitre pokemon](@assets/docs/projets/Enregistrement-csv-pokemon.gif "Démonstration du maitre pokemon")
 
 ---
 
