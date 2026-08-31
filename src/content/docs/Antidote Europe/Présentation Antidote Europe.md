@@ -1,7 +1,7 @@
 ---
 title: Présentation Antidote Europe
 image: "@assets/docs/projets/antidote-rats.jpg"
-imageAlt: logo antidote Europe
+imageAlt: rat antidote Europe
 pubDate: 2022-02-15
 author: [mathieu-escabias]
 ---

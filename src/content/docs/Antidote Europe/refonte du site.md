@@ -1,7 +1,7 @@
 ---
 title: refonte Antidote Europe
 image: "@assets/docs/projets/site-refonte-antidote.png"
-imageAlt: logo antidote Europe
+imageAlt: nouveau site antidote Europe
 pubDate: 2026-08-31
 author: [mathieu-escabias, lory-mattolini]
 ---

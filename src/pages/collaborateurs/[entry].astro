@@ -1,5 +1,5 @@
 ---
-import type { collaborateursEntry, BlogEntry } from "@/types";
+import type { collaborateursEntry, DocsEntry } from "@/types";
 import EntryLayout from "@components/collaborateurs/EntryLayout.astro";
 import { slugify } from "@lib/textConverter";
 import { getEntries } from "@lib/contentParser";
@@ -18,12 +18,10 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { title } = entry.data;
-const blogEntries = (await getEntries("blog", sortByDate)) as BlogEntry[];
-const filteredBlogEntries = blogEntries.filter(
-  (entry: BlogEntry) =>
-    slugify(entry.data.author?.id ? entry.data.author.id : "Jane Doe") ===
-    slugify("title")
+const docsEntries = (await getEntries("docs", sortByDate)) as DocsEntry[];
+const filteredDocsEntries = docsEntries.filter((docEntry: DocsEntry) =>
+  docEntry.data.author?.some((author) => slugify(author.id) === slugify(entry.id))
 );
 ---
 
-<EntryLayout entry={entry} recentBlogEntries={filteredBlogEntries} />
+<EntryLayout entry={entry} recentBlogEntries={filteredDocsEntries} />
