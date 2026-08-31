@@ -11,8 +11,8 @@ technologies: [
     "javascript",
     "seo",
 ]
-url: https://droguerie-naturelle.fr/
+url: https://mahorainstitut.fr/
 urlActive: true
 categories: [vitrine, reservation]
-tags: ["bien être",]
+tags: ["bien être"]
 ---
