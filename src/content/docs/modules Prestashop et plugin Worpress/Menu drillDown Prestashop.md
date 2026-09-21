@@ -1,6 +1,6 @@
 ---
 title: Menu drillDown Prestashop
-image: "@assets/docs/projets/csv-pokemon.png"
+image: "@assets/docs/projets/devcoeur.jpg"
 imageAlt: Image du menu drilleDown
 date: 2026-09-30
 author: [mathieu-escabias]

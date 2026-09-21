@@ -1,23 +1,61 @@
 ---
 import type { DocsEntry } from "@/types";
 import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
 
 interface Props {
   entry: DocsEntry;
 }
 
 const { entry } = Astro.props;
-const { title, image, imageAlt, date, tags, } = entry.data;
+const { title, image, imageAlt, date } = entry.data;
+
+// --- Badge NEW : au moins un doc du dossier a moins de 18 mois ---
+const NEWS_MONTHS = 18;
+
+const isRecent = (d?: Date, months = NEWS_MONTHS) => {
+  if (!d) return false;
+  const limit = new Date();
+  limit.setMonth(limit.getMonth() - months);
+  return d >= limit;
+};
+
+// Date la plus récente parmi modDate / pubDate / date
+const latestDate = (d: DocsEntry): Date | undefined => {
+  const times = [d.data.modDate, d.data.pubDate, d.data.date]
+    .filter(Boolean)
+    .map((x) => x!.getTime());
+  return times.length ? new Date(Math.max(...times)) : undefined;
+};
+
+const isFolder = entry.id.endsWith("-index");
+let hasNews = false;
+
+if (isFolder) {
+  const folder = entry.id.replace("-index", ""); // ex: "antidote-europe/"
+  const allDocs = await getCollection("docs");
+  hasNews = allDocs.some(
+    (d) =>
+      d.id !== entry.id &&
+      d.id.startsWith(folder) &&
+      isRecent(latestDate(d)),
+  );
+}
+
+// --- Étoile crantée (14 pointes) générée en SVG ---
+const spikes = 14;
+const starPoints = Array.from({ length: spikes * 2 }, (_, i) => {
+  const angle = (Math.PI * i) / spikes - Math.PI / 2;
+  const r = i % 2 === 0 ? 48 : 40;
+  return `${(50 + r * Math.cos(angle)).toFixed(1)},${(50 + r * Math.sin(angle)).toFixed(1)}`;
+}).join(" ");
 ---
 
 <div
   class="h-full m-2 pl-0 bg-gradient-to-br gradient rounded-lg intersect:animate-fadeUp opacity-0"
 >
-  <div class="glass h-full rounded-lg">
-    <a
-      class="group hover:opacity-100"
-      href={`/docs/${entry.id.replace("/-index", "")}`}
-    >
+<div class="glass h-full rounded-lg">
+  <a class="group hover:opacity-100 flex flex-col h-full" href={`/docs/${entry.id.replace("/-index", "")}`}>
       <div class="relative rounded-lg pb-9/16 overflow-hidden">
         {
           image && (
@@ -25,21 +63,76 @@ const { title, image, imageAlt, date, tags, } = entry.data;
               class="absolute object-cover w-full h-full group-hover:scale-[105%] transition-all duration-300"
               src={image}
               alt={imageAlt}
-              width={1280}
-              height={720}
-              loading="eager"
+              width={640}
+              height={360}
+              loading="lazy"
             />
           )
         }
-        <div
-          class="glass-t absolute text-center rounded-lg px-2 top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]"
-        >
-          <h4 class="text-lg">
-            {title}
-          </h4>
-        </div>
-            {date && <p class="glass-t text-xs absolute bottom-1 text-center px-2 py-1 mx-2 rounded-lg"> {date.toLocaleDateString('fr-FR')} </p>}
+
+        {
+          hasNews && (
+            <div
+              class="news-badge absolute top-2 right-2 z-10 w-10 h-10 pointer-events-none"
+              title="Nouveautés dans ce dossier"
+            >
+              <svg
+                viewBox="0 0 100 100"
+                class="w-full h-full text-txt-mycolor drop-shadow-md"
+                aria-hidden="true"
+              >
+                <polygon points={starPoints} fill="currentColor" />
+                <text
+                  x="50"
+                  y="50"
+                  text-anchor="middle"
+                  dominant-baseline="central"
+                  transform="rotate(-30 50 50)"
+                  fill="white"
+                  font-size="24"
+                  font-weight="800"
+                  letter-spacing="1"
+                >
+                  NEW
+                </text>
+              </svg>
+            </div>
+          )
+        }
+
+        {
+          date && (
+            <p class="glass-t text-xs absolute bottom-1 text-center px-2 py-1 mx-2 rounded-lg">
+              {date.toLocaleDateString("fr-FR")}
+            </p>
+          )
+        }
+      </div>
+
+      <!-- Titre sous l'image, centré -->
+      <div class="flex-1 flex items-center justify-center px-3 py-3">
+        <h4 class="text-lg text-center">{title}</h4>
       </div>
     </a>
   </div>
 </div>
+
+<style>
+  .news-badge {
+    animation: news-wiggle 2.4s ease-in-out infinite;
+  }
+  @keyframes news-wiggle {
+    0%,
+    100% {
+      transform: rotate(-8deg);
+    }
+    50% {
+      transform: rotate(8deg);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .news-badge {
+      animation: none;
+    }
+  }
+</style>

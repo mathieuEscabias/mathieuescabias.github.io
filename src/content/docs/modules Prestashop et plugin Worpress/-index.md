@@ -1,7 +1,7 @@
 ---
-title: modules Prestashop et plugin Worpress
-description: Toutes mes réalisations
-image: "@assets/docs/projets/despanisator.png"
+title: modules Prestashop / Wordpress
+description: Mes modules Prestashop et extension Wordpress
+image: "@assets/docs/projets/devcoeur.jpg"
 imageAlt: image de plugin
 date: 2026-09-30
 author: [mathieu-escabias]

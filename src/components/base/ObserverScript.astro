@@ -4,8 +4,11 @@
     observer: null,
     delayBetweenAnimations: 100, // ms
     animationCounter: 0,
+    resetTimer: null,
 
     start() {
+  this.observer?.disconnect();
+  this.animationCounter = 0;
       const selectors = [
         '[class*=" intersect:"]',
         '[class*=":intersect:"]',
@@ -32,10 +35,11 @@
         }
       };
 
-      elements.forEach((el) => {
+        elements.forEach((el) => {
         el.setAttribute("no-intersect", "");
+        el.removeAttribute("data-animated"); 
         el._intersectionThreshold = getThreshold(el);
-      });
+});
 
       const callback = (entries) => {
         entries.forEach((entry) => {
@@ -61,11 +65,12 @@
                 target.removeAttribute("no-intersect");
                 target.setAttribute("data-animated", "true");
 
-                const delay =
-                  this.animationCounter * this.delayBetweenAnimations;
-                this.animationCounter++;
+            const delay = Math.min(this.animationCounter, 5) * this.delayBetweenAnimations;
+            this.animationCounter++;
+            clearTimeout(this.resetTimer);
+            this.resetTimer = setTimeout(() => (this.animationCounter = 0), 300);
 
-                target.style.animationDelay = `${delay}ms`;
+            target.style.animationDelay = `${delay}ms`;
 
 
                 const animClass = target.dataset.intersectAnimate;
@@ -89,7 +94,6 @@
                 target.classList.remove(animClass);
               }
 
-              this.animationCounter = 0;
             }
           });
         });
@@ -105,9 +109,11 @@
     },
   };
 
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", () => Observer.start());
+} else {
   Observer.start();
+}
 
-  document.addEventListener("astro:after-swap", () => {
-    Observer.start();
-  });
+document.addEventListener("astro:after-swap", () => Observer.start());
 </script>
