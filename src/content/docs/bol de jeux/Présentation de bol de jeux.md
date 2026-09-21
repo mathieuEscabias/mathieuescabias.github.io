@@ -1,5 +1,5 @@
 ---
-title: Présentation de Silverstone Motor
+title: Présentation de Bol de jeux
 image: "@assets/docs/projets/bol-de-jeux.jpeg"
 imageAlt: Logo de bol de jeux
 pubDate: 2025-05-19

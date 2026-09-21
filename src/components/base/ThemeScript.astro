@@ -1,39 +1,36 @@
-<script is:inline data-astro-rerun>
-  const defaultTheme = "dark";
+<script is:inline>
+  const STORAGE_KEY = "theme";
+  const DEFAULT_THEME = "dark";
 
-  function getTheme(defaultTheme) {
-    var darkMode = defaultTheme === "dark" ? true : false;
-    if (localStorage.getItem("theme") === "system") {
-      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        darkMode = true;
-      }
-    } else if (localStorage.getItem("theme") === "dark") {
-      darkMode = true;
-    } else if (localStorage.getItem("theme") === "light") {
-      darkMode = false;
-    }
-    return darkMode;
+  function getDarkMode() {
+    let stored = null;
+    try { stored = localStorage.getItem(STORAGE_KEY); } catch (e) {}
+    if (stored === "light") return false;
+    if (stored === "dark") return true;
+    if (stored === "system") return matchMedia("(prefers-color-scheme: dark)").matches;
+    return DEFAULT_THEME === "dark"; // rien de stocké → dark par défaut
   }
 
-  function setTheme(darkMode) {
-    // Update DOM
-    darkMode
-      ? document.documentElement.classList.add("dark")
-      : document.documentElement.classList.remove("dark");
-    // Update localStorage
-    localStorage.setItem("theme", darkMode ? "dark" : "light");
+  function applyTheme(dark, root = document.documentElement) {
+    root.classList.toggle("dark", dark);
   }
 
-  // This prevents flickering back to default theme before the page is fully loaded
-  setTheme(getTheme(defaultTheme));
+  // 1er chargement (avant le rendu, pas de flash)
+  applyTheme(getDarkMode());
 
+  // Navigation View Transitions : on applique le thème au nouveau document AVANT le swap
+  document.addEventListener("astro:before-swap", (e) => {
+    applyTheme(getDarkMode(), e.newDocument.documentElement);
+  });
+
+  // Switch : on ne sauvegarde que sur un clic de l'utilisateur
   document.addEventListener("astro:page-load", () => {
-    setTheme(getTheme(defaultTheme));
-    // Theme switcher
-    var themeSwitch = document.querySelectorAll("[data-theme-switcher]");
-    themeSwitch.forEach((el) => {
+    document.querySelectorAll("[data-theme-switcher]").forEach((el) => {
+      el.checked = document.documentElement.classList.contains("dark");
       el.addEventListener("change", (e) => {
-        setTheme(e.target.checked);
+        const dark = e.target.checked;
+        applyTheme(dark);
+        try { localStorage.setItem(STORAGE_KEY, dark ? "dark" : "light"); } catch (err) {}
       });
     });
   });

@@ -13,6 +13,6 @@ technologies: [
 ]
 url: https://mahorainstitut.fr/
 urlActive: true
-categories: [vitrine, reservation]
+categories: [site-vitrine, reservation]
 tags: ["bien être"]
 ---
